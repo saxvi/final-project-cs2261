@@ -813,12 +813,14 @@ goToWin:
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
 	mov	r2, #67108864
-	mov	r1, #8064
+	mov	r3, #8064
+	mov	r1, #0
 	push	{r4, lr}
-	mov	r3, #256
-	ldr	r4, .L111
-	strh	r1, [r2, #8]	@ movhi
 	mov	r0, #3
+	ldr	r4, .L111
+	strh	r3, [r2, #8]	@ movhi
+	strh	r1, [r2, #16]	@ movhi
+	mov	r3, #256
 	mov	r2, #83886080
 	ldr	r1, .L111+4
 	mov	lr, pc
@@ -987,44 +989,40 @@ game:
 	pop	{r4, lr}
 	bx	lr
 .L130:
-	ldr	r0, .L133+36
-	ldr	r1, .L133+40
-	ldr	r2, .L133+44
-	str	r3, [r0]
-	str	r3, [r1]
+	mov	r2, #67108864
+	ldr	r1, .L133+36
+	strh	r3, [r2, #16]	@ movhi
+	strh	r3, [r2, #18]	@ movhi
 	mov	lr, pc
-	bx	r2
+	bx	r1
 	bl	goToLose
 	ldr	r3, .L133+12
 	ldr	r3, [r3]
 	cmp	r3, #5
 	bne	.L120
 .L131:
-	mov	r3, #0
-	ldr	r0, .L133+36
-	ldr	r1, .L133+40
-	ldr	r2, .L133+44
-	str	r3, [r0]
-	str	r3, [r1]
+	mov	r3, #67108864
+	mov	r2, #0
+	ldr	r1, .L133+36
+	strh	r2, [r3, #16]	@ movhi
+	strh	r2, [r3, #18]	@ movhi
 	mov	lr, pc
-	bx	r2
+	bx	r1
 	bl	goToWin
 	b	.L120
 .L132:
-	ldr	r0, .L133+36
-	ldr	r1, .L133+40
-	ldr	r2, .L133+44
-	str	r3, [r0]
-	str	r3, [r1]
+	mov	r2, #67108864
+	ldr	r1, .L133+36
+	strh	r3, [r2, #16]	@ movhi
+	strh	r3, [r2, #18]	@ movhi
 	mov	lr, pc
-	bx	r2
+	bx	r1
 	bl	goToWin
 	b	.L121
 .L129:
-	ldr	r1, .L133+36
-	ldr	r2, .L133+40
-	str	r3, [r1]
-	str	r3, [r2]
+	mov	r2, #67108864
+	strh	r3, [r2, #16]	@ movhi
+	strh	r3, [r2, #18]	@ movhi
 	bl	goToPause
 	b	.L118
 .L134:
@@ -1039,8 +1037,6 @@ game:
 	.word	DMANow
 	.word	shadowOAM
 	.word	waitForVBlank
-	.word	hOff
-	.word	vOff
 	.word	pauseSounds
 	.size	game, .-game
 	.align	2
@@ -1115,7 +1111,7 @@ win:
 	beq	.L144
 	ldr	r2, .L155+8
 	ldrh	r2, [r2]
-	tst	r2, #8
+	ands	r2, r2, #8
 	beq	.L153
 .L144:
 	tst	r3, #1
@@ -1134,6 +1130,11 @@ win:
 	pop	{r4, lr}
 	b	goToExtra
 .L153:
+	mov	r3, #67108864
+	strh	r2, [r3, #16]	@ movhi
+	strh	r2, [r3, #18]	@ movhi
+	strh	r2, [r3, #20]	@ movhi
+	strh	r2, [r3, #22]	@ movhi
 	bl	goToStart
 	ldrh	r3, [r4]
 	b	.L144

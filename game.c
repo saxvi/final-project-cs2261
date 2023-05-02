@@ -401,10 +401,10 @@ void initDogs() {
     // big boy
     dogs[0].width = 32;
     dogs[0].height = 32;
-    dogs[0].x = 207;
-    dogs[0].y = 176;
-    dogs[0].dx = -2;
-    dogs[0].dy = -2;
+    dogs[0].x = 96;
+    dogs[0].y = 104;
+    dogs[0].dx = 2;
+    dogs[0].dy = 2;
     dogs[0].direction = LEFT;
     dogs[0].numOfFrames = 2;
     dogs[0].isMoving = 0;
@@ -446,7 +446,7 @@ void updateDogs() {
 
             if (!colorAt1(rightX + buffer, bottomY + buffer) && !colorAt1(rightX + buffer, topY - buffer))  { // right side hits wall
                 dogs[i].dx = -dogs[i].dx;
-                dogs[i].x += shift;
+                dogs[i].y += shift;
             }
 
             if (!colorAt1(leftX + buffer, topY - buffer) && !colorAt1(rightX + buffer, topY - buffer)) { // top side hits wall
@@ -462,7 +462,7 @@ void updateDogs() {
 
             // direction
             if (dogs[i].dx > 0 && dogs[i].dy > 0) { // +x, +y
-                dogs[i].direction = LEFT;
+                dogs[i].direction = RIGHT;
             }
             if (dogs[i].dx > 0 && dogs[i].dy < 0) { // +x, -y
                 dogs[i].direction = UP;
@@ -470,8 +470,8 @@ void updateDogs() {
             if (dogs[i].dx < 0 && dogs[i].dy < 0) { // -x, -y
                 dogs[i].direction = DOWN;
             }
-            if (dogs[i].dx > 0 && dogs[i].dy > 0) { // -x, +y
-                dogs[i].direction = RIGHT;
+            if (dogs[i].dx < 0 && dogs[i].dy > 0) { // -x, +y
+                dogs[i].direction = LEFT;
             }
 
             dogs[i].x += dogs[i].dx;

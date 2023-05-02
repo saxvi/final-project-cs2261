@@ -402,30 +402,29 @@ void goToGame() {
 void game() {
     
     if (BUTTON_PRESSED(BUTTON_START)) {
-        hOff = 0;
-        vOff = 0;
+        REG_BG0HOFF = 0;
+        REG_BG0VOFF = 0;
 
         goToPause();
     }
 
     if (lives == 0) {
-        hOff = 0;
-        vOff = 0;
+        REG_BG0HOFF = 0;
+        REG_BG0VOFF = 0;
         pauseSounds();
         goToLose();
     }
 
     if (score == 5) {
         hOff = 0;
-        vOff = 0;
         pauseSounds();
         goToWin();
     }
 
     // debug
     if (BUTTON_PRESSED(BUTTON_RSHOULDER)) {
-        hOff = 0;
-        vOff = 0;
+        REG_BG0HOFF = 0;
+        REG_BG0VOFF = 0;
         pauseSounds();
         goToWin();
     }
@@ -439,6 +438,7 @@ void game() {
 
 // sets up win state
 void goToWin() {
+
 
     REG_BG0CNT = BG_SIZE_SMALL | BG_CHARBLOCK(0) | BG_SCREENBLOCK(31) | BG_8BPP;
 
@@ -461,6 +461,10 @@ void win() {
     hideSprites();
 
     if (BUTTON_PRESSED(BUTTON_START)) {
+        REG_BG0HOFF = 0;
+        REG_BG0VOFF = 0;
+        REG_BG1HOFF = 0;
+        REG_BG1VOFF = 0;
         goToStart();
     }
 
@@ -500,6 +504,8 @@ void goToExtra() {
     playSoundA(goofyahhbeatEXTRA_data, goofyahhbeatEXTRA_length, 1);
 
     hideSprites();
+
+    
 
 }
 
