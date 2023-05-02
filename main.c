@@ -186,7 +186,6 @@ void setupInterrupts(void) {
 	REG_IME = 1;
 }
 
-
 // start game
 void initialize() {
 
@@ -257,11 +256,9 @@ void start() {
 
 // sets up instruction page
 void goToInstructions() {
-    
     REG_BG0CNT = BG_SIZE_SMALL | BG_CHARBLOCK(0) | BG_SCREENBLOCK(31);
     
-    hOff = 0;
-    vOff = 0;
+    REG_BG0HOFF = 0;
 
     DMANow(3, instructionsPal, PALETTE, 256);
 
@@ -269,9 +266,13 @@ void goToInstructions() {
     DMANow(3, instructionsMap, &SCREENBLOCK[31], instructionsMapLen/2);
 
     hideSprites();
+    waitForVBlank();
+
     DMANow(3, shadowOAM, OAM, 128*4);
 
     pauseSounds();
+
+    
 
     state = INSTRUCTIONS;
 }
@@ -310,7 +311,7 @@ void goToInstr2() {
     DMANow(3, instr2Tiles, &CHARBLOCK[0], instr2TilesLen/2);
     DMANow(3, instr2Map, &SCREENBLOCK[31], instr2MapLen/2);
 
-    hideSprites();
+    waitForVBlank();
     DMANow(3, shadowOAM, OAM, 128*4);
 
     state = INSTR2;
@@ -381,7 +382,7 @@ void goToGame() {
     REG_DISPCTL = BG_ENABLE(0) | BG_ENABLE(1) | SPRITE_ENABLE;
 
     // setting up Game background 0
-    REG_BG0CNT = BG_SIZE_SMALL | BG_CHARBLOCK(0) | BG_SCREENBLOCK(31);
+    REG_BG0CNT = BG_SIZE_SMALL | BG_8BPP | BG_CHARBLOCK(0) | BG_SCREENBLOCK(31);
     DMANow(3, gameBGPal, PALETTE, 256);
     DMANow(3, gameBGTiles, &CHARBLOCK[0], gameBGTilesLen/2);
     DMANow(3, gameBGMap, &SCREENBLOCK[31], gameBGMapLen/2);

@@ -354,62 +354,61 @@ goToInstructions:
 	@ Function supports interworking.
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
-	mov	ip, #0
-	mov	r3, #67108864
-	mov	r2, #7936
-	ldr	r0, .L38
+	mov	r2, #67108864
+	mov	r3, #7936
+	mov	r1, #0
 	push	{r4, lr}
-	ldr	lr, .L38+4
-	strh	r2, [r3, #8]	@ movhi
-	ldr	r4, .L38+8
-	str	ip, [r0]
+	mov	r0, #3
+	ldr	r4, .L38
+	strh	r3, [r2, #8]	@ movhi
+	strh	r1, [r2, #16]	@ movhi
 	mov	r3, #256
 	mov	r2, #83886080
-	mov	r0, #3
-	ldr	r1, .L38+12
-	str	ip, [lr]
+	ldr	r1, .L38+4
 	mov	lr, pc
 	bx	r4
 	mov	r3, #3984
 	mov	r2, #100663296
 	mov	r0, #3
-	ldr	r1, .L38+16
+	ldr	r1, .L38+8
 	mov	lr, pc
 	bx	r4
 	mov	r0, #3
-	ldr	r2, .L38+20
-	ldr	r1, .L38+24
+	ldr	r2, .L38+12
+	ldr	r1, .L38+16
 	mov	r3, #1024
 	mov	lr, pc
 	bx	r4
-	ldr	r3, .L38+28
+	ldr	r3, .L38+20
+	mov	lr, pc
+	bx	r3
+	ldr	r3, .L38+24
 	mov	lr, pc
 	bx	r3
 	mov	r2, #117440512
 	mov	r3, #512
 	mov	r0, #3
-	ldr	r1, .L38+32
+	ldr	r1, .L38+28
 	mov	lr, pc
 	bx	r4
-	ldr	r3, .L38+36
+	ldr	r3, .L38+32
 	mov	lr, pc
 	bx	r3
 	mov	r2, #1
-	ldr	r3, .L38+40
+	ldr	r3, .L38+36
 	pop	{r4, lr}
 	str	r2, [r3]
 	bx	lr
 .L39:
 	.align	2
 .L38:
-	.word	hOff
-	.word	vOff
 	.word	DMANow
 	.word	instructionsPal
 	.word	instructionsTiles
 	.word	100726784
 	.word	instructionsMap
 	.word	hideSprites
+	.word	waitForVBlank
 	.word	shadowOAM
 	.word	pauseSounds
 	.word	state
@@ -469,7 +468,7 @@ goToInstr2:
 	.word	instr2Tiles
 	.word	100726784
 	.word	instr2Map
-	.word	hideSprites
+	.word	waitForVBlank
 	.word	shadowOAM
 	.word	state
 	.size	goToInstr2, .-goToInstr2
@@ -671,7 +670,7 @@ goToGame:
 	@ frame_needed = 0, uses_anonymous_args = 0
 	mov	r2, #67108864
 	mov	r3, #4864
-	mov	r1, #7936
+	mov	r1, #8064
 	push	{r4, lr}
 	mov	r0, #3
 	ldr	r4, .L88
@@ -682,7 +681,7 @@ goToGame:
 	ldr	r1, .L88+4
 	mov	lr, pc
 	bx	r4
-	mov	r3, #1440
+	mov	r3, #4992
 	mov	r2, #100663296
 	mov	r0, #3
 	ldr	r1, .L88+8

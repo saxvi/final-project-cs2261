@@ -987,7 +987,7 @@ extern const unsigned short instr2Pal[256];
 # 23 "main.c" 2
 # 1 "gameBG.h" 1
 # 22 "gameBG.h"
-extern const unsigned short gameBGTiles[1440];
+extern const unsigned short gameBGTiles[4992];
 
 
 extern const unsigned short gameBGMap[1024];
@@ -1303,7 +1303,6 @@ void setupInterrupts(void) {
 }
 
 
-
 void initialize() {
 
     (*(volatile unsigned short *)0x4000000) = ((0) & 7) | (1 << (8 + (0 % 4))) | (1 << (8 + (1 % 4))) | (1 << 12);
@@ -1373,11 +1372,9 @@ void start() {
 
 
 void goToInstructions() {
-
     (*(volatile unsigned short*)0x4000008) = (0 << 14) | ((0) << 2) | ((31) << 8);
 
-    hOff = 0;
-    vOff = 0;
+    (*(volatile unsigned short *)0x04000010) = 0;
 
     DMANow(3, instructionsPal, ((unsigned short *)0x5000000), 256);
 
@@ -1385,9 +1382,13 @@ void goToInstructions() {
     DMANow(3, instructionsMap, &((screenblock *)0x6000000)[31], 2048/2);
 
     hideSprites();
+    waitForVBlank();
+
     DMANow(3, shadowOAM, ((OBJ_ATTR*)(0x7000000)), 128*4);
 
     pauseSounds();
+
+
 
     state = INSTRUCTIONS;
 }
@@ -1426,7 +1427,7 @@ void goToInstr2() {
     DMANow(3, instr2Tiles, &((charblock *)0x06000000)[0], 960/2);
     DMANow(3, instr2Map, &((screenblock *)0x6000000)[31], 2048/2);
 
-    hideSprites();
+    waitForVBlank();
     DMANow(3, shadowOAM, ((OBJ_ATTR*)(0x7000000)), 128*4);
 
     state = INSTR2;
@@ -1497,9 +1498,9 @@ void goToGame() {
     (*(volatile unsigned short *)0x4000000) = (1 << (8 + (0 % 4))) | (1 << (8 + (1 % 4))) | (1 << 12);
 
 
-    (*(volatile unsigned short*)0x4000008) = (0 << 14) | ((0) << 2) | ((31) << 8);
+    (*(volatile unsigned short*)0x4000008) = (0 << 14) | (1 << 7) | ((0) << 2) | ((31) << 8);
     DMANow(3, gameBGPal, ((unsigned short *)0x5000000), 256);
-    DMANow(3, gameBGTiles, &((charblock *)0x06000000)[0], 2880/2);
+    DMANow(3, gameBGTiles, &((charblock *)0x06000000)[0], 9984/2);
     DMANow(3, gameBGMap, &((screenblock *)0x6000000)[31], 2048/2);
 
     hideSprites();
