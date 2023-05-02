@@ -479,7 +479,7 @@ void win() {
 void goToLose() {
     DMANow(3, loseScreenPal, PALETTE, 256);
 
-    REG_BG0CNT = BG_SIZE_SMALL | BG_CHARBLOCK(0) | BG_SCREENBLOCK(31);
+    REG_BG0CNT = BG_SIZE_SMALL | BG_CHARBLOCK(0) | BG_SCREENBLOCK(31) | BG_8BPP;
 
     DMANow(3, loseScreenTiles, &CHARBLOCK[0], loseScreenTilesLen/2);
     DMANow(3, loseScreenMap, &SCREENBLOCK[31], loseScreenMapLen/2);

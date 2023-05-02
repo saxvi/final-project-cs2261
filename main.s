@@ -892,7 +892,7 @@ goToLose:
 	mov	lr, pc
 	bx	r4
 	mov	r2, #67108864
-	mov	r1, #7936
+	mov	r1, #8064
 	mov	r3, #2432
 	strh	r1, [r2, #8]	@ movhi
 	mov	r0, #3

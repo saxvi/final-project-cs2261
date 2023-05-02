@@ -1604,7 +1604,7 @@ void win() {
 void goToLose() {
     DMANow(3, loseScreenPal, ((unsigned short *)0x5000000), 256);
 
-    (*(volatile unsigned short*)0x4000008) = (0 << 14) | ((0) << 2) | ((31) << 8);
+    (*(volatile unsigned short*)0x4000008) = (0 << 14) | ((0) << 2) | ((31) << 8) | (1 << 7);
 
     DMANow(3, loseScreenTiles, &((charblock *)0x06000000)[0], 4864/2);
     DMANow(3, loseScreenMap, &((screenblock *)0x6000000)[31], 2048/2);
