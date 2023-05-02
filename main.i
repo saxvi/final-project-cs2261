@@ -1532,16 +1532,12 @@ void game() {
     }
 
     if (score == 5) {
-        (*(volatile unsigned short *)0x04000010) = 0;
-        (*(volatile unsigned short *)0x04000012) = 0;
         pauseSounds();
         goToWin();
     }
 
 
     if ((!(~(oldButtons) & ((1<<8))) && (~(buttons) & ((1<<8))))) {
-        (*(volatile unsigned short *)0x04000010) = 0;
-        (*(volatile unsigned short *)0x04000012) = 0;
         pauseSounds();
         goToWin();
     }
@@ -1556,9 +1552,13 @@ void game() {
 
 void goToWin() {
 
-    (*(volatile unsigned short*)0x4000008) = (0 << 14) | ((0) << 2) | ((31) << 8) | (1 << 7);
 
+    (*(volatile unsigned short*)0x4000008) = (0 << 14) | ((0) << 2) | ((31) << 8) | (1 << 7);
     (*(volatile unsigned short *)0x04000010) = 0;
+    (*(volatile unsigned short *)0x04000012) = 0;
+
+    hOff = 0;
+    vOff = 0;
 
     DMANow(3, pigeonPhotoGAMEVERPal, ((unsigned short *)0x5000000), 256);
 
@@ -1622,6 +1622,8 @@ void goToExtra() {
     playSoundA(goofyahhbeatEXTRA_data, goofyahhbeatEXTRA_length, 1);
 
     hideSprites();
+
+
 
 }
 

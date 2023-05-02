@@ -837,6 +837,18 @@ void initDogs() {
     dogs[0].numOfFrames = 2;
     dogs[0].isMoving = 0;
 
+
+    dogs[1].width = 32;
+    dogs[1].width = 32;
+    dogs[1].height = 32;
+    dogs[1].x = 183;
+    dogs[1].y = 8;
+    dogs[1].dx = 1;
+    dogs[1].dy = 1;
+    dogs[1].direction = LEFT;
+    dogs[1].numOfFrames = 2;
+    dogs[1].isMoving = 0;
+
 }
 
 void updateDogs() {
@@ -864,25 +876,25 @@ void updateDogs() {
 
 
             int buffer = 2;
-            int shift = 1;
+            int shift = 0;
 
-            if (!colorAt1(leftX - buffer, bottomY + buffer) && !colorAt1(leftX - buffer, topY - buffer)) {
+            if (!colorAt1(leftX - buffer, bottomY - 1 + buffer) && !colorAt1(leftX - buffer, topY + 1 - buffer)) {
                 dogs[i].dx = -dogs[i].dx;
                 dogs[i].x -= shift;
                 dogs[i].y += shift;
             }
 
-            if (!colorAt1(rightX + buffer, bottomY + buffer) && !colorAt1(rightX + buffer, topY - buffer)) {
+            if (!colorAt1(rightX + buffer, bottomY - 1 + buffer) && !colorAt1(rightX + buffer, topY + 1 - buffer)) {
                 dogs[i].dx = -dogs[i].dx;
                 dogs[i].y += shift;
             }
 
-            if (!colorAt1(leftX + buffer, topY - buffer) && !colorAt1(rightX + buffer, topY - buffer)) {
+            if (!colorAt1(leftX + 1 + buffer, topY - buffer) && !colorAt1(rightX - 1 + buffer, topY - buffer)) {
                 dogs[i].dy = -dogs[i].dy;
                 dogs[i].y -= shift;
             }
 
-            if (!colorAt1(leftX - buffer, bottomY + buffer) && !colorAt1(rightX - buffer, bottomY + buffer)) {
+            if (!colorAt1(leftX + 1 + buffer, bottomY + buffer) && !colorAt1(rightX - 1 + buffer, bottomY + buffer)) {
                 dogs[i].dy = -dogs[i].dy;
                 dogs[i].y += shift;
             }
@@ -929,8 +941,13 @@ void drawDogs() {
         shadowOAM[1].attr0 = (0<<13) | ((dogs[0].y - vOff) & 0xFF);
         shadowOAM[1].attr1 = (2<<14) | ((dogs[0].x - hOff) & 0x1FF);
         shadowOAM[1].attr2 = (((0) & 0xF) << 12) | ((((8 + dogs[0].frame * 4)) * 32 + ((dogs[0].direction * 4))) & 0x3FF);
-    }
 
+
+        shadowOAM[2].attr0 = (0<<13) | ((dogs[1].y - vOff) & 0xFF);
+        shadowOAM[2].attr1 = (2<<14) | ((dogs[1].x - hOff) & 0x1FF);
+        shadowOAM[2].attr2 = (((1) & 0xF) << 12) | ((((8 + dogs[1].frame * 4)) * 32 + ((16 + dogs[1].direction * 4))) & 0x3FF);
+
+    }
 }
 
 
@@ -957,18 +974,18 @@ void initToys() {
     sToy[1].x = 72;
     sToy[1].y = 160;
 
-    sToy[2].x = 160;
+    sToy[2].x = 163;
     sToy[2].y = 24;
 
-    sToy[3].x = 176;
-    sToy[3].y = 160;
+    sToy[3].x = 192;
+    sToy[3].y = 200;
 
     sToy[4].x = 200;
     sToy[4].y = 64;
 
-    sToy[5].x = 184;
-    sToy[5].y = 224;
-# 551 "game.c"
+    sToy[5].x = 16;
+    sToy[5].y = 208;
+# 568 "game.c"
 }
 
 void updateToys() {
@@ -1012,7 +1029,7 @@ void drawToys() {
             shadowOAM[4].attr0 = (2<<8);
         }
     }
-# 602 "game.c"
+# 619 "game.c"
 }
 
 

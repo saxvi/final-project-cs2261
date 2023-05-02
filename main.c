@@ -416,15 +416,12 @@ void game() {
     }
 
     if (score == 5) {
-        hOff = 0;
         pauseSounds();
         goToWin();
     }
 
     // debug
     if (BUTTON_PRESSED(BUTTON_RSHOULDER)) {
-        REG_BG0HOFF = 0;
-        REG_BG0VOFF = 0;
         pauseSounds();
         goToWin();
     }
@@ -441,6 +438,11 @@ void goToWin() {
 
 
     REG_BG0CNT = BG_SIZE_SMALL | BG_CHARBLOCK(0) | BG_SCREENBLOCK(31) | BG_8BPP;
+    REG_BG0HOFF = 0;
+    REG_BG0VOFF = 0;
+
+    hOff = 0;
+    vOff = 0;
 
     DMANow(3, pigeonPhotoGAMEVERPal, PALETTE, 256);
 

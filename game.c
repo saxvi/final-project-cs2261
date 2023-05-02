@@ -398,7 +398,7 @@ void drawPlayerS() {
 
 void initDogs() {
 
-    // big boy
+    // doggie number one
     dogs[0].width = 32;
     dogs[0].height = 32;
     dogs[0].x = 96;
@@ -408,6 +408,18 @@ void initDogs() {
     dogs[0].direction = LEFT;
     dogs[0].numOfFrames = 2;
     dogs[0].isMoving = 0;
+
+    // doggie number two
+    dogs[1].width = 32;
+    dogs[1].width = 32;
+    dogs[1].height = 32;
+    dogs[1].x = 183;
+    dogs[1].y = 8;
+    dogs[1].dx = 1;
+    dogs[1].dy = 1;
+    dogs[1].direction = LEFT;
+    dogs[1].numOfFrames = 2;
+    dogs[1].isMoving = 0;
 
 }
 
@@ -422,7 +434,7 @@ void updateDogs() {
         int topY = dogs[i].y;
         int bottomY = dogs[i].y + dogs[i].height - 1;
 
-        // if dog hits player while player not on safe point
+        // if dog hits player
         if (!safe && collision(player.x, player.y, player.width, player.height, dogs[i].x, dogs[i].y, dogs[i].width, dogs[i].height)) {
             player.x = 8;
             player.y = 16;
@@ -436,25 +448,25 @@ void updateDogs() {
             // boundary checks
 
             int buffer = 2;
-            int shift = 1;
+            int shift = 0;
 
-            if (!colorAt1(leftX - buffer, bottomY + buffer) && !colorAt1(leftX - buffer, topY - buffer)) { //  left side corner hits wall
+            if (!colorAt1(leftX - buffer, bottomY - 1 + buffer) && !colorAt1(leftX - buffer, topY + 1 - buffer)) { //  left side hits wall
                 dogs[i].dx = -dogs[i].dx;
                 dogs[i].x -= shift;
                 dogs[i].y += shift;
             }
 
-            if (!colorAt1(rightX + buffer, bottomY + buffer) && !colorAt1(rightX + buffer, topY - buffer))  { // right side hits wall
+            if (!colorAt1(rightX + buffer, bottomY - 1 + buffer) && !colorAt1(rightX + buffer, topY + 1 - buffer))  { // right side hits wall
                 dogs[i].dx = -dogs[i].dx;
                 dogs[i].y += shift;
             }
 
-            if (!colorAt1(leftX + buffer, topY - buffer) && !colorAt1(rightX + buffer, topY - buffer)) { // top side hits wall
+            if (!colorAt1(leftX + 1 + buffer, topY - buffer) && !colorAt1(rightX - 1 + buffer, topY - buffer)) { // top side hits wall
                 dogs[i].dy = -dogs[i].dy;
                 dogs[i].y -= shift;
             }
 
-            if (!colorAt1(leftX - buffer, bottomY + buffer) && !colorAt1(rightX - buffer, bottomY + buffer)) { // bottom side hits wall
+            if (!colorAt1(leftX + 1 + buffer, bottomY + buffer) && !colorAt1(rightX - 1 + buffer, bottomY + buffer)) { // bottom side hits wall
                 dogs[i].dy = -dogs[i].dy;
                 dogs[i].y += shift;
             }
@@ -501,8 +513,13 @@ void drawDogs() {
         shadowOAM[1].attr0 = ATTR0_4BPP | ATTR0_Y(dogs[0].y - vOff);
         shadowOAM[1].attr1 = ATTR1_MEDIUM | ATTR1_X(dogs[0].x - hOff);
         shadowOAM[1].attr2 = ATTR2_PALROW(0) | ATTR2_TILEID((dogs[0].direction * 4), (8 + dogs[0].frame * 4));
-    }
 
+        // number two
+        shadowOAM[2].attr0 = ATTR0_4BPP | ATTR0_Y(dogs[1].y - vOff);
+        shadowOAM[2].attr1 = ATTR1_MEDIUM | ATTR1_X(dogs[1].x - hOff);
+        shadowOAM[2].attr2 = ATTR2_PALROW(1) | ATTR2_TILEID((16 + dogs[1].direction * 4), (8 + dogs[1].frame * 4));
+
+    }
 }
 
 
@@ -529,17 +546,17 @@ void initToys() {
     sToy[1].x = 72;
     sToy[1].y = 160;
 
-    sToy[2].x = 160;
+    sToy[2].x = 163;
     sToy[2].y = 24;
 
-    sToy[3].x = 176;
-    sToy[3].y = 160;
+    sToy[3].x = 192;
+    sToy[3].y = 200;
 
     sToy[4].x = 200;
     sToy[4].y = 64;
 
-    sToy[5].x = 184;
-    sToy[5].y = 224;
+    sToy[5].x = 16;
+    sToy[5].y = 208;
 
     // medium toys
 
