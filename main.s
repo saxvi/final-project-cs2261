@@ -367,7 +367,7 @@ goToInstructions:
 	ldr	r1, .L38+4
 	mov	lr, pc
 	bx	r4
-	mov	r3, #3984
+	mov	r3, #3632
 	mov	r2, #100663296
 	mov	r0, #3
 	ldr	r1, .L38+8
@@ -385,17 +385,14 @@ goToInstructions:
 	ldr	r3, .L38+24
 	mov	lr, pc
 	bx	r3
-	mov	r2, #117440512
 	mov	r3, #512
+	mov	r2, #117440512
 	mov	r0, #3
 	ldr	r1, .L38+28
 	mov	lr, pc
 	bx	r4
-	ldr	r3, .L38+32
-	mov	lr, pc
-	bx	r3
 	mov	r2, #1
-	ldr	r3, .L38+36
+	ldr	r3, .L38+32
 	pop	{r4, lr}
 	str	r2, [r3]
 	bx	lr
@@ -410,7 +407,6 @@ goToInstructions:
 	.word	hideSprites
 	.word	waitForVBlank
 	.word	shadowOAM
-	.word	pauseSounds
 	.word	state
 	.size	goToInstructions, .-goToInstructions
 	.align	2
@@ -432,31 +428,31 @@ goToInstr2:
 	mov	lr, pc
 	bx	r4
 	mov	r2, #67108864
-	mov	r1, #7936
-	mov	r3, #480
-	strh	r1, [r2, #8]	@ movhi
+	mov	r1, #8064
 	mov	r0, #3
+	strh	r1, [r2, #8]	@ movhi
+	ldr	r3, .L42+8
 	mov	r2, #100663296
-	ldr	r1, .L42+8
+	ldr	r1, .L42+12
 	mov	lr, pc
 	bx	r4
 	mov	r0, #3
-	ldr	r2, .L42+12
-	ldr	r1, .L42+16
+	ldr	r2, .L42+16
+	ldr	r1, .L42+20
 	mov	r3, #1024
 	mov	lr, pc
 	bx	r4
-	ldr	r3, .L42+20
+	ldr	r3, .L42+24
 	mov	lr, pc
 	bx	r3
 	mov	r3, #512
 	mov	r2, #117440512
 	mov	r0, #3
-	ldr	r1, .L42+24
+	ldr	r1, .L42+28
 	mov	lr, pc
 	bx	r4
 	mov	r2, #2
-	ldr	r3, .L42+28
+	ldr	r3, .L42+32
 	pop	{r4, lr}
 	str	r2, [r3]
 	bx	lr
@@ -465,6 +461,7 @@ goToInstr2:
 .L42:
 	.word	DMANow
 	.word	instr2Pal
+	.word	8480
 	.word	instr2Tiles
 	.word	100726784
 	.word	instr2Map
@@ -492,30 +489,30 @@ goToPause:
 	bx	r4
 	mov	r2, #67108864
 	mov	r1, #7936
-	mov	r0, #3
+	mov	r3, #1936
 	strh	r1, [r2, #8]	@ movhi
-	ldr	r3, .L46+8
+	mov	r0, #3
 	mov	r2, #100663296
-	ldr	r1, .L46+12
+	ldr	r1, .L46+8
 	mov	lr, pc
 	bx	r4
 	mov	r0, #3
-	ldr	r2, .L46+16
-	ldr	r1, .L46+20
+	ldr	r2, .L46+12
+	ldr	r1, .L46+16
 	mov	r3, #1024
 	mov	lr, pc
 	bx	r4
-	ldr	r3, .L46+24
+	ldr	r3, .L46+20
 	mov	lr, pc
 	bx	r3
 	mov	r3, #512
 	mov	r2, #117440512
 	mov	r0, #3
-	ldr	r1, .L46+28
+	ldr	r1, .L46+24
 	mov	lr, pc
 	bx	r4
 	mov	r2, #3
-	ldr	r3, .L46+32
+	ldr	r3, .L46+28
 	pop	{r4, lr}
 	str	r2, [r3]
 	bx	lr
@@ -524,7 +521,6 @@ goToPause:
 .L46:
 	.word	DMANow
 	.word	pausePal
-	.word	6368
 	.word	pauseTiles
 	.word	100726784
 	.word	pauseMap
@@ -562,11 +558,11 @@ instructions:
 	tst	r2, #1
 	beq	.L63
 .L50:
-	tst	r3, #256
+	tst	r3, #16
 	beq	.L51
 	ldr	r3, .L65+8
 	ldrh	r3, [r3]
-	tst	r3, #256
+	tst	r3, #16
 	beq	.L64
 .L51:
 	ldr	r3, .L65+12
@@ -578,9 +574,6 @@ instructions:
 	bl	goToInstr2
 	b	.L51
 .L62:
-	ldr	r3, .L65+16
-	mov	lr, pc
-	bx	r3
 	bl	goToStart
 	ldrh	r3, [r4]
 	b	.L49
@@ -595,7 +588,6 @@ instructions:
 	.word	hideSprites
 	.word	buttons
 	.word	waitForVBlank
-	.word	pauseSounds
 	.size	instructions, .-instructions
 	.align	2
 	.global	instr2
@@ -627,11 +619,11 @@ instr2:
 	tst	r2, #1
 	beq	.L82
 .L69:
-	tst	r3, #512
+	tst	r3, #32
 	beq	.L70
 	ldr	r3, .L84+8
 	ldrh	r3, [r3]
-	tst	r3, #512
+	tst	r3, #32
 	beq	.L83
 .L70:
 	ldr	r3, .L84+12
@@ -787,11 +779,11 @@ pause:
 	bl	goToInstructions
 	b	.L93
 .L104:
-	bl	goToGame
+	bl	goToStart
 	ldrh	r3, [r4]
 	b	.L91
 .L105:
-	bl	goToStart
+	bl	goToGame
 	ldrh	r3, [r4]
 	b	.L92
 .L108:
@@ -901,7 +893,7 @@ goToLose:
 	bx	r4
 	mov	r2, #67108864
 	mov	r1, #7936
-	mov	r3, #720
+	mov	r3, #2432
 	strh	r1, [r2, #8]	@ movhi
 	mov	r0, #3
 	mov	r2, #100663296
@@ -1070,17 +1062,50 @@ goToExtra:
 	@ Function supports interworking.
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
-	push	{r4, lr}
 	ldr	r3, .L141
-	mov	r2, #1
+	push	{r4, lr}
 	ldr	r1, [r3]
+	mov	r2, #1
 	ldr	r0, .L141+4
 	ldr	r3, .L141+8
 	mov	lr, pc
 	bx	r3
-	ldr	r3, .L141+12
+	mov	r2, #67108864
+	mov	r3, #8064
+	mov	r1, #0
+	ldr	r4, .L141+12
+	strh	r3, [r2, #8]	@ movhi
+	mov	r0, #3
+	strh	r1, [r2, #16]	@ movhi
+	mov	r3, #256
+	mov	r2, #83886080
+	ldr	r1, .L141+16
+	mov	lr, pc
+	bx	r4
+	mov	r3, #10432
+	mov	r2, #100663296
+	mov	r0, #3
+	ldr	r1, .L141+20
+	mov	lr, pc
+	bx	r4
+	mov	r0, #3
+	ldr	r2, .L141+24
+	ldr	r1, .L141+28
+	mov	r3, #1024
+	mov	lr, pc
+	bx	r4
+	ldr	r3, .L141+32
 	mov	lr, pc
 	bx	r3
+	ldr	r3, .L141+36
+	mov	lr, pc
+	bx	r3
+	mov	r3, #512
+	mov	r2, #117440512
+	mov	r0, #3
+	ldr	r1, .L141+40
+	mov	lr, pc
+	bx	r4
 	pop	{r4, lr}
 	bx	lr
 .L142:
@@ -1089,7 +1114,14 @@ goToExtra:
 	.word	goofyahhbeatEXTRA_length
 	.word	goofyahhbeatEXTRA_data
 	.word	playSoundA
+	.word	DMANow
+	.word	extraPal
+	.word	extraTiles
+	.word	100726784
+	.word	extraMap
 	.word	hideSprites
+	.word	waitForVBlank
+	.word	shadowOAM
 	.size	goToExtra, .-goToExtra
 	.align	2
 	.global	win

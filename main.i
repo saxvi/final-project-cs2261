@@ -967,7 +967,7 @@ extern const unsigned short startXLPal[256];
 # 21 "main.c" 2
 # 1 "instructions.h" 1
 # 22 "instructions.h"
-extern const unsigned short instructionsTiles[3984];
+extern const unsigned short instructionsTiles[3632];
 
 
 extern const unsigned short instructionsMap[1024];
@@ -977,7 +977,7 @@ extern const unsigned short instructionsPal[256];
 # 22 "main.c" 2
 # 1 "instr2.h" 1
 # 22 "instr2.h"
-extern const unsigned short instr2Tiles[480];
+extern const unsigned short instr2Tiles[8480];
 
 
 extern const unsigned short instr2Map[1024];
@@ -1007,7 +1007,7 @@ extern const unsigned short pigeonPhotoGAMEVERPal[256];
 # 25 "main.c" 2
 # 1 "loseScreen.h" 1
 # 22 "loseScreen.h"
-extern const unsigned short loseScreenTiles[720];
+extern const unsigned short loseScreenTiles[2432];
 
 
 extern const unsigned short loseScreenMap[1024];
@@ -1017,7 +1017,7 @@ extern const unsigned short loseScreenPal[256];
 # 26 "main.c" 2
 # 1 "pause.h" 1
 # 22 "pause.h"
-extern const unsigned short pauseTiles[6368];
+extern const unsigned short pauseTiles[1936];
 
 
 extern const unsigned short pauseMap[1024];
@@ -1025,6 +1025,16 @@ extern const unsigned short pauseMap[1024];
 
 extern const unsigned short pausePal[256];
 # 27 "main.c" 2
+# 1 "extra.h" 1
+# 22 "extra.h"
+extern const unsigned short extraTiles[10432];
+
+
+extern const unsigned short extraMap[1024];
+
+
+extern const unsigned short extraPal[256];
+# 28 "main.c" 2
 
 # 1 "spritesheet.h" 1
 # 21 "spritesheet.h"
@@ -1032,7 +1042,7 @@ extern const unsigned short spritesheetTiles[16384];
 
 
 extern const unsigned short spritesheetPal[256];
-# 29 "main.c" 2
+# 30 "main.c" 2
 # 1 "game.h" 1
 # 16 "game.h"
     extern int score;
@@ -1112,7 +1122,7 @@ extern const unsigned short spritesheetPal[256];
 
     void initTable();
     void drawTable();
-# 30 "main.c" 2
+# 31 "main.c" 2
 
 # 1 "startSong.h" 1
 
@@ -1120,35 +1130,35 @@ extern const unsigned short spritesheetPal[256];
 extern const unsigned int startSong_sampleRate;
 extern const unsigned int startSong_length;
 extern const signed char startSong_data[];
-# 32 "main.c" 2
+# 33 "main.c" 2
 # 1 "gameSong.h" 1
 
 
 extern const unsigned int gameSong_sampleRate;
 extern const unsigned int gameSong_length;
 extern const signed char gameSong_data[];
-# 33 "main.c" 2
+# 34 "main.c" 2
 # 1 "goofyahhbeatEXTRA.h" 1
 
 
 extern const unsigned int goofyahhbeatEXTRA_sampleRate;
 extern const unsigned int goofyahhbeatEXTRA_length;
 extern const signed char goofyahhbeatEXTRA_data[];
-# 34 "main.c" 2
+# 35 "main.c" 2
 # 1 "meow.h" 1
 
 
 extern const unsigned int meow_sampleRate;
 extern const unsigned int meow_length;
 extern const signed char meow_data[];
-# 35 "main.c" 2
+# 36 "main.c" 2
 # 1 "scoreUp.h" 1
 
 
 extern const unsigned int scoreUp_sampleRate;
 extern const unsigned int scoreUp_length;
 extern const signed char scoreUp_data[];
-# 36 "main.c" 2
+# 37 "main.c" 2
 
 
 
@@ -1378,7 +1388,7 @@ void goToInstructions() {
 
     DMANow(3, instructionsPal, ((unsigned short *)0x5000000), 256);
 
-    DMANow(3, instructionsTiles, &((charblock *)0x06000000)[0], 7968/2);
+    DMANow(3, instructionsTiles, &((charblock *)0x06000000)[0], 7264/2);
     DMANow(3, instructionsMap, &((screenblock *)0x6000000)[31], 2048/2);
 
     hideSprites();
@@ -1386,7 +1396,7 @@ void goToInstructions() {
 
     DMANow(3, shadowOAM, ((OBJ_ATTR*)(0x7000000)), 128*4);
 
-    pauseSounds();
+
 
 
 
@@ -1400,8 +1410,6 @@ void instructions() {
 
 
     if ((!(~(oldButtons) & ((1<<3))) && (~(buttons) & ((1<<3))))) {
-
-        pauseSounds();
         goToStart();
     }
 
@@ -1411,7 +1419,7 @@ void instructions() {
     }
 
 
-    if ((!(~(oldButtons) & ((1<<8))) && (~(buttons) & ((1<<8))))) {
+    if ((!(~(oldButtons) & ((1<<4))) && (~(buttons) & ((1<<4))))) {
         goToInstr2();
     }
 
@@ -1422,9 +1430,9 @@ void instructions() {
 void goToInstr2() {
     DMANow(3, instr2Pal, ((unsigned short *)0x5000000), 256);
 
-    (*(volatile unsigned short*)0x4000008) = (0 << 14) | ((0) << 2) | ((31) << 8);
+    (*(volatile unsigned short*)0x4000008) = (0 << 14) | ((0) << 2) | ((31) << 8) | (1 << 7);
 
-    DMANow(3, instr2Tiles, &((charblock *)0x06000000)[0], 960/2);
+    DMANow(3, instr2Tiles, &((charblock *)0x06000000)[0], 16960/2);
     DMANow(3, instr2Map, &((screenblock *)0x6000000)[31], 2048/2);
 
     waitForVBlank();
@@ -1448,7 +1456,7 @@ hideSprites();
     }
 
 
-    if ((!(~(oldButtons) & ((1<<9))) && (~(buttons) & ((1<<9))))) {
+    if ((!(~(oldButtons) & ((1<<5))) && (~(buttons) & ((1<<5))))) {
         goToInstructions();
     }
 
@@ -1461,7 +1469,7 @@ void goToPause() {
 
     (*(volatile unsigned short*)0x4000008) = (0 << 14) | ((0) << 2) | ((31) << 8);
 
-    DMANow(3, pauseTiles, &((charblock *)0x06000000)[0], 12736/2);
+    DMANow(3, pauseTiles, &((charblock *)0x06000000)[0], 3872/2);
     DMANow(3, pauseMap, &((screenblock *)0x6000000)[31], 2048/2);
 
     hideSprites();
@@ -1476,12 +1484,12 @@ void pause() {
 
 
     if ((!(~(oldButtons) & ((1<<3))) && (~(buttons) & ((1<<3))))) {
-            goToGame();
+            goToStart();
     }
 
 
     if ((!(~(oldButtons) & ((1<<2))) && (~(buttons) & ((1<<2))))) {
-        goToStart();
+        goToGame();
     }
 
 
@@ -1598,7 +1606,7 @@ void goToLose() {
 
     (*(volatile unsigned short*)0x4000008) = (0 << 14) | ((0) << 2) | ((31) << 8);
 
-    DMANow(3, loseScreenTiles, &((charblock *)0x06000000)[0], 1440/2);
+    DMANow(3, loseScreenTiles, &((charblock *)0x06000000)[0], 4864/2);
     DMANow(3, loseScreenMap, &((screenblock *)0x6000000)[31], 2048/2);
 
     hideSprites();
@@ -1621,15 +1629,25 @@ void goToExtra() {
 
     playSoundA(goofyahhbeatEXTRA_data, goofyahhbeatEXTRA_length, 1);
 
+    (*(volatile unsigned short*)0x4000008) = (0 << 14) | ((0) << 2) | ((31) << 8) | (1 << 7);
+
+    (*(volatile unsigned short *)0x04000010) = 0;
+
+    DMANow(3, extraPal, ((unsigned short *)0x5000000), 256);
+
+    DMANow(3, extraTiles, &((charblock *)0x06000000)[0], 20864/2);
+    DMANow(3, extraMap, &((screenblock *)0x6000000)[31], 2048/2);
+
     hideSprites();
+    waitForVBlank();
 
-
-
+    DMANow(3, shadowOAM, ((OBJ_ATTR*)(0x7000000)), 128*4);
 }
 
 void extra() {
 
     if ((!(~(oldButtons) & ((1<<3))) && (~(buttons) & ((1<<3))))) {
+
         goToStart();
     }
 }

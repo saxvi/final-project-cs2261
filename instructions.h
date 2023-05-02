@@ -5,11 +5,11 @@
 //
 //	instructions, 256x256@4, 
 //	+ palette 256 entries, not compressed
-//	+ 249 tiles (t|f|p reduced) not compressed
+//	+ 227 tiles (t|f|p reduced) not compressed
 //	+ regular map (in SBBs), not compressed, 32x32 
-//	Total size: 512 + 7968 + 2048 = 10528
+//	Total size: 512 + 7264 + 2048 = 9824
 //
-//	Time-stamp: 2023-04-04, 12:54:37
+//	Time-stamp: 2023-05-02, 14:52:46
 //	Exported by Cearn's GBA Image Transmogrifier, v0.8.3
 //	( http://www.coranac.com/projects/#grit )
 //
@@ -18,8 +18,8 @@
 #ifndef GRIT_INSTRUCTIONS_H
 #define GRIT_INSTRUCTIONS_H
 
-#define instructionsTilesLen 7968
-extern const unsigned short instructionsTiles[3984];
+#define instructionsTilesLen 7264
+extern const unsigned short instructionsTiles[3632];
 
 #define instructionsMapLen 2048
 extern const unsigned short instructionsMap[1024];

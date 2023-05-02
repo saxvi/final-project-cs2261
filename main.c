@@ -24,6 +24,7 @@
 #include "pigeonPhotoGAMEVER.h"
 #include "loseScreen.h"
 #include "pause.h"
+#include "extra.h"
 
 #include "spritesheet.h"
 #include "game.h"
@@ -270,7 +271,7 @@ void goToInstructions() {
 
     DMANow(3, shadowOAM, OAM, 128*4);
 
-    pauseSounds();
+    //pauseSounds();
 
     
 
@@ -284,8 +285,6 @@ void instructions() {
 
     // back to start    
     if (BUTTON_PRESSED(BUTTON_START)) {
-
-        pauseSounds();
         goToStart();
     }
 
@@ -295,7 +294,7 @@ void instructions() {
     }
 
     //instr 2
-    if (BUTTON_PRESSED(BUTTON_RSHOULDER)) {
+    if (BUTTON_PRESSED(BUTTON_RIGHT)) {
         goToInstr2();
     }
 
@@ -306,7 +305,7 @@ void instructions() {
 void goToInstr2() {
     DMANow(3, instr2Pal, PALETTE, 256);
 
-    REG_BG0CNT = BG_SIZE_SMALL | BG_CHARBLOCK(0) | BG_SCREENBLOCK(31);
+    REG_BG0CNT = BG_SIZE_SMALL | BG_CHARBLOCK(0) | BG_SCREENBLOCK(31) | BG_8BPP;
 
     DMANow(3, instr2Tiles, &CHARBLOCK[0], instr2TilesLen/2);
     DMANow(3, instr2Map, &SCREENBLOCK[31], instr2MapLen/2);
@@ -332,7 +331,7 @@ hideSprites();
     }
 
     //instr 2
-    if (BUTTON_PRESSED(BUTTON_LSHOULDER)) {
+    if (BUTTON_PRESSED(BUTTON_LEFT)) {
         goToInstructions();
     }
 
@@ -360,12 +359,12 @@ void pause() {
 
     // back to game    
     if (BUTTON_PRESSED(BUTTON_START)) {
-            goToGame();
+            goToStart();
     }
 
     // quit game, return to start
     if (BUTTON_PRESSED(BUTTON_SELECT)) {
-        goToStart();
+        goToGame();
     }
 
     // instructions (if you forgor :skull:)
@@ -505,15 +504,25 @@ void goToExtra() {
 
     playSoundA(goofyahhbeatEXTRA_data, goofyahhbeatEXTRA_length, 1);
 
-    hideSprites();
-
+    REG_BG0CNT = BG_SIZE_SMALL | BG_CHARBLOCK(0) | BG_SCREENBLOCK(31) | BG_8BPP;
     
+    REG_BG0HOFF = 0;
 
+    DMANow(3, extraPal, PALETTE, 256);
+
+    DMANow(3, extraTiles, &CHARBLOCK[0], extraTilesLen/2);
+    DMANow(3, extraMap, &SCREENBLOCK[31], extraMapLen/2);
+
+    hideSprites();
+    waitForVBlank();
+
+    DMANow(3, shadowOAM, OAM, 128*4);
 }
 
 void extra() {
 
     if (BUTTON_PRESSED(BUTTON_START)) {
+
         goToStart();
     }
 }

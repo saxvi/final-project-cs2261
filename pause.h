@@ -5,11 +5,11 @@
 //
 //	pause, 256x256@4, 
 //	+ palette 256 entries, not compressed
-//	+ 398 tiles (t|f|p reduced) not compressed
+//	+ 121 tiles (t|f|p reduced) not compressed
 //	+ regular map (in SBBs), not compressed, 32x32 
-//	Total size: 512 + 12736 + 2048 = 15296
+//	Total size: 512 + 3872 + 2048 = 6432
 //
-//	Time-stamp: 2023-04-04, 14:01:21
+//	Time-stamp: 2023-05-02, 15:45:31
 //	Exported by Cearn's GBA Image Transmogrifier, v0.8.3
 //	( http://www.coranac.com/projects/#grit )
 //
@@ -18,8 +18,8 @@
 #ifndef GRIT_PAUSE_H
 #define GRIT_PAUSE_H
 
-#define pauseTilesLen 12736
-extern const unsigned short pauseTiles[6368];
+#define pauseTilesLen 3872
+extern const unsigned short pauseTiles[1936];
 
 #define pauseMapLen 2048
 extern const unsigned short pauseMap[1024];

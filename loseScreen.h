@@ -3,13 +3,13 @@
 
 //======================================================================
 //
-//	loseScreen, 256x256@4, 
+//	loseScreen, 256x256@8, 
 //	+ palette 256 entries, not compressed
-//	+ 45 tiles (t|f|p reduced) not compressed
+//	+ 76 tiles (t|f|p reduced) not compressed
 //	+ regular map (in SBBs), not compressed, 32x32 
-//	Total size: 512 + 1440 + 2048 = 4000
+//	Total size: 512 + 4864 + 2048 = 7424
 //
-//	Time-stamp: 2023-04-04, 21:44:46
+//	Time-stamp: 2023-05-02, 15:18:26
 //	Exported by Cearn's GBA Image Transmogrifier, v0.8.3
 //	( http://www.coranac.com/projects/#grit )
 //
@@ -18,8 +18,8 @@
 #ifndef GRIT_LOSESCREEN_H
 #define GRIT_LOSESCREEN_H
 
-#define loseScreenTilesLen 1440
-extern const unsigned short loseScreenTiles[720];
+#define loseScreenTilesLen 4864
+extern const unsigned short loseScreenTiles[2432];
 
 #define loseScreenMapLen 2048
 extern const unsigned short loseScreenMap[1024];
