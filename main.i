@@ -1371,7 +1371,6 @@ void goToStart() {
     DMANow(3, startXLTiles, &((charblock *)0x06000000)[1], 14848 / 2);
     DMANow(3, startXLMap, &((screenblock *)0x6000000)[26], 8192 / 2);
 
-
     (*(volatile unsigned short*)0x400000A) = ((0) << 2) | ((30) << 8) | (1 << 14);
 
     hOff2 = 0;

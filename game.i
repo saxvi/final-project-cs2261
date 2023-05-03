@@ -750,6 +750,7 @@ void initPlayerS() {
     player.y = 80;
     player.direction = RIGHT;
     player.hide = 0;
+    aniSpeed = 10;
 }
 
 void updatePlayerS() {
@@ -759,9 +760,12 @@ void updatePlayerS() {
     if ((~(buttons) & ((1<<4)))) {
         player.direction = RIGHT;
         player.isMoving = 1;
-        if ((player.x + player.width < 1024)) {
+        if ((player.x + player.width < 992)) {
             if ((~(buttons) & ((1<<0)))) {
                 player.x += (player.dx * 2);
+                aniSpeed /= 2;
+            } else {
+                aniSpeed = 10;
             }
             player.x += player.dx;
         }
@@ -773,6 +777,9 @@ void updatePlayerS() {
         if ((player.x > 0)) {
             if ((~(buttons) & ((1<<0)))) {
                 player.x -= (player.dx * 2);
+                aniSpeed /= 2;
+            } else {
+                aniSpeed = 10;
             }
             player.x -= player.dx;
         }
@@ -780,16 +787,18 @@ void updatePlayerS() {
 
 
     if (player.isMoving) {
-        player.timeUntilNextFrame--;
-        if (player.timeUntilNextFrame % 10 == 0) {
+
+        if (player.timeUntilNextFrame % aniSpeed == 0) {
             player.frame = (player.frame + 1) % player.numOfFrames;
-        }
+        };
         if (player.timeUntilNextFrame == 0) {
-            player.timeUntilNextFrame = 10;
+            player.timeUntilNextFrame = aniSpeed;
         }
+        player.timeUntilNextFrame--;
+
     } else {
         player.frame = 0;
-        player.timeUntilNextFrame = 10;
+        player.timeUntilNextFrame = aniSpeed;
     }
 
 
@@ -996,7 +1005,7 @@ void initToys() {
 
     sToy[5].x = 16;
     sToy[5].y = 208;
-# 579 "game.c"
+# 588 "game.c"
 }
 
 void updateToys() {
@@ -1040,7 +1049,7 @@ void drawToys() {
             shadowOAM[4].attr0 = (2<<8);
         }
     }
-# 630 "game.c"
+# 639 "game.c"
 }
 
 

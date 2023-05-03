@@ -322,6 +322,7 @@ void initPlayerS() {
     player.y = 80;
     player.direction = RIGHT;
     player.hide = 0;
+    aniSpeed = 10;
 }
 
 void updatePlayerS() {
@@ -331,9 +332,12 @@ void updatePlayerS() {
     if (BUTTON_HELD(BUTTON_RIGHT)) {
         player.direction = RIGHT;
         player.isMoving = 1;
-        if ((player.x + player.width < 1024)) {
+        if ((player.x + player.width < 1000)) {
             if (BUTTON_HELD(BUTTON_A)) {
                 player.x += (player.dx * 2);
+                aniSpeed /= 2;
+            } else {
+                aniSpeed = 10;
             }
             player.x += player.dx;
         }
@@ -345,6 +349,9 @@ void updatePlayerS() {
         if ((player.x > 0)) {
             if (BUTTON_HELD(BUTTON_A)) {
                 player.x -= (player.dx * 2);
+                aniSpeed /= 2;
+            } else {
+                aniSpeed = 10;
             }
             player.x -= player.dx;
         }
@@ -352,16 +359,18 @@ void updatePlayerS() {
 
     // animate walk
     if (player.isMoving) {
-        player.timeUntilNextFrame--;
-        if (player.timeUntilNextFrame % 10 == 0) {
+
+        if (player.timeUntilNextFrame % aniSpeed == 0) {
             player.frame = (player.frame + 1) % player.numOfFrames;
-        }
+        };
         if (player.timeUntilNextFrame == 0) {
-            player.timeUntilNextFrame = 10;
+            player.timeUntilNextFrame = aniSpeed;
         }
+        player.timeUntilNextFrame--;
+
     } else {
         player.frame = 0;
-        player.timeUntilNextFrame = 10;
+        player.timeUntilNextFrame = aniSpeed;
     }
 
     // move hoff if player halfway thru screen

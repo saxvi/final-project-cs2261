@@ -231,7 +231,6 @@ void goToStart() {
     DMANow(3, startXLTiles, &CHARBLOCK[1], startXLTilesLen / 2);
     DMANow(3, startXLMap, &SCREENBLOCK[26], startXLMapLen / 2);
 
-    // LOAD PARALLAX BG HERE
     REG_BG1CNT = BG_CHARBLOCK(0) | BG_SCREENBLOCK(30) | BG_SIZE_WIDE;
 
     hOff2 = 0;
