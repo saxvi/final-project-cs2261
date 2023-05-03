@@ -475,6 +475,7 @@ SPRITE table;
 SPRITE SC;
 SPRITE points;
 SPRITE life[3];
+SPRITE cheat;
 
 SPRITE player;
 
@@ -539,6 +540,11 @@ SPRITE lToy[2];
     void drawPoints();
 
 
+    void initCheat();
+    void updateCheat();
+    void drawCheat();
+
+
 inline unsigned char colorAt1(int x, int y) {
     return ((u8 *) collisionMap1Bitmap)[((y) * (256) + (x))];
 }
@@ -576,6 +582,7 @@ void initGame() {
     initToys();
     initLives();
     initBasket();
+    initCheat();
 }
 
 void updateGame() {
@@ -583,6 +590,7 @@ void updateGame() {
     updatePlayer();
     updateDogs();
     updateToys();
+    updateCheat();
 }
 
 void drawGame() {
@@ -592,6 +600,7 @@ void drawGame() {
     drawToys();
     drawLives();
     drawBasket();
+    drawCheat();
 
     (*(volatile unsigned short *)0x04000010) = hOff;
     (*(volatile unsigned short *)0x04000012) = vOff;
@@ -985,7 +994,7 @@ void initToys() {
 
     sToy[5].x = 16;
     sToy[5].y = 208;
-# 568 "game.c"
+# 577 "game.c"
 }
 
 void updateToys() {
@@ -1029,7 +1038,7 @@ void drawToys() {
             shadowOAM[4].attr0 = (2<<8);
         }
     }
-# 619 "game.c"
+# 628 "game.c"
 }
 
 
@@ -1109,84 +1118,46 @@ void drawBasket() {
 
 
 
-void initSC() {
-    SC.x = 8;
-    SC.y = 8;
-    SC.height = 8;
-    SC.width = 32;
+void initCheat() {
+    cheat.x = 16;
+    cheat.y = 0;
+    cheat.dx= 0;
+    cheat.dy = 2;
+    cheat.height = 8;
+    cheat.width = 8;
+    cheat.hide = 1;
+    cheat.isMoving = 0;
+    mgba_printf("cheat initialized");
 }
 
-void drawSC() {
+void updateCheat() {
 
-    shadowOAM[14].attr0 = (0<<13) | (1<<14) | ((SC.y) & 0xFF);
-    shadowOAM[14].attr1 = (1<<14) | ((SC.x) & 0x1FF);
-    shadowOAM[14].attr2 = (((0) & 0xF) << 12) | (((31) * 32 + (2)) & 0x3FF);
-
-    DMANow(3, shadowOAM, ((OBJ_ATTR*)(0x7000000)), 128*4);
-
-
-    if (((!(~(oldButtons) & ((1<<9))) && (~(buttons) & ((1<<9)))))|| (score == 5)) {
-        goToWin();
+    if ((!(~(oldButtons) & ((1<<9))) && (~(buttons) & ((1<<9))))) {
+        mgba_printf("cheat button pressed");
+        cheat.hide = 0;
     }
-}
 
+    if (!cheat.hide) {
+        if (cheat.y < 100) {
+            cheat.y += cheat.dy;
+        }
 
-void initPoints() {
-    points.width = 8;
-    points.height = 8;
-    points.x = 32;
-    points.y = 8;
-}
-
-void drawPoints() {
-
-
-    if (score == 0) {
-        shadowOAM[15].attr0 = (0<<13) | ((points.y) & 0xFF);
-        shadowOAM[15].attr1 = ((points.x) & 0x1FF);
-        shadowOAM[15].attr2 = (((0) & 0xF) << 12) | (((31) * 32 + (15)) & 0x3FF);
-
-
-    } else if (score < 10) {
-        shadowOAM[15].attr0 = (0<<13) | ((points.y) & 0xFF);
-        shadowOAM[15].attr1 = ((points.x + 8) & 0x1FF);
-        shadowOAM[15].attr2 = (((0) & 0xF) << 12) | (((31) * 32 + (5 + score)) & 0x3FF);
-
-
-    } else if ((score > 10) && (score < 20)) {
-        shadowOAM[15].attr0 = (0<<13) | ((points.y) & 0xFF);
-        shadowOAM[15].attr1 = ((points.x) & 0x1FF);
-        shadowOAM[15].attr2 = (((0) & 0xF) << 12) | (((31) * 32 + (6)) & 0x3FF);
-
-        shadowOAM[16].attr0 = (0<<13) | ((points.y) & 0xFF);
-        shadowOAM[16].attr1 = ((points.x + 8) & 0x1FF);
-        shadowOAM[16].attr2 = (((0) & 0xF) << 12) | (((31) * 32 + ((5 + score - 10))) & 0x3FF);
-
-
-
-    } else if (score > 20) {
-        shadowOAM[15].attr0 = (1<<13) | ((points.y) & 0xFF);
-        shadowOAM[15].attr1 = ((points.x) & 0x1FF);
-        shadowOAM[15].attr2 = (((0) & 0xF) << 12) | (((31) * 32 + (7)) & 0x3FF);
-
-        shadowOAM[16].attr0 = (0<<13) | ((points.y) & 0xFF);
-        shadowOAM[16].attr1 = ((points.x + 8) & 0x1FF);
-        shadowOAM[16].attr2 = (((0) & 0xF) << 12) | (((31) * 32 + ((5 + score - 10))) & 0x3FF);
+        if (collision(player.x, player.y, player.width, player.height, cheat.x, cheat.y, cheat.width, cheat.height) && (!(~(oldButtons) & ((1<<0))) && (~(buttons) & ((1<<0))))) {
+            player.dx = 5;
+            player.dy = 5;
+            cheat.hide = 1;
+        }
     }
+    mgba_printf("cheat initialized");
 }
 
+void drawCheat() {
 
-void initTable() {
-    if (level == 1) {
-        table.x = 128;
-        table.y = 168;
-        table.width = 32;
-        table.height = 64;
+    if (!cheat.hide) {
+        shadowOAM[32].attr0 = ((cheat.y - hOff) & 0xFF);
+        shadowOAM[32].attr1 = ((cheat.x - vOff) & 0x1FF);
+        shadowOAM[32].attr2 = (((1) & 0xF) << 12) | (((1) * 32 + (16)) & 0x3FF) | (((0) & 3) << 10);
+    } else {
+        shadowOAM[32].attr0 = (2<<8);
     }
-}
-
-void drawTable() {
-    shadowOAM[17].attr0 = (1<<13) | (2<<14) | ((table.y) & 0xFF);
-    shadowOAM[17].attr1 = (3<<14) | ((table.x) & 0x1FF);
-    shadowOAM[17].attr2 = (((0) & 0xF) << 12) | (((11) * 32 + (4)) & 0x3FF) | (((0) & 3) << 10);
 }

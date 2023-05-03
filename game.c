@@ -47,6 +47,7 @@ SPRITE table;
 SPRITE SC;
 SPRITE points;
 SPRITE life[STARTINGLIVES];
+SPRITE cheat;
 
 SPRITE player;
 
@@ -110,6 +111,11 @@ SPRITE lToy[LARGETOYS];
     void updatePoints();
     void drawPoints();
 
+    // cheat
+    void initCheat();
+    void updateCheat();
+    void drawCheat();
+
 // map 1 collision checks
 inline unsigned char colorAt1(int x, int y) {
     return ((u8 *) collisionMap1Bitmap)[OFFSET(x, y, MAPWIDTH)];
@@ -148,6 +154,7 @@ void initGame() {
     initToys();
     initLives();
     initBasket();
+    initCheat();
 }
 
 void updateGame() {
@@ -155,6 +162,7 @@ void updateGame() {
     updatePlayer();
     updateDogs();
     updateToys();
+    updateCheat();
 }
 
 void drawGame() {
@@ -164,6 +172,7 @@ void drawGame() {
     drawToys();
     drawLives();
     drawBasket();
+    drawCheat();
 
     REG_BG0HOFF = hOff;
     REG_BG0VOFF = vOff;
@@ -693,86 +702,127 @@ void drawBasket() {
 
 }
 
+// cheat //
+
+void initCheat() {
+    cheat.x = 16;
+    cheat.y = 0;
+    cheat.dx= 0;
+    cheat.dy = 2;
+    cheat.height = 8;
+    cheat.width = 8;
+    cheat.hide = 1;
+    cheat.isMoving = 0;
+    mgba_printf("cheat initialized");
+}
+
+void updateCheat() {
+
+    if (BUTTON_PRESSED(BUTTON_LSHOULDER)) {
+        mgba_printf("cheat button pressed");
+        cheat.hide = 0;
+    }
+
+    if (!cheat.hide) {
+        if (cheat.y < 100) {
+            cheat.y += cheat.dy;
+        }
+
+        if (collision(player.x, player.y, player.width, player.height, cheat.x, cheat.y,  cheat.width, cheat.height) && BUTTON_PRESSED(BUTTON_A)) {
+            player.dx = 5;
+            player.dy = 5;
+            cheat.hide = 1;
+        }
+    }
+    mgba_printf("cheat initialized");
+}
+
+void drawCheat() {
+
+    if (!cheat.hide) {
+        shadowOAM[32].attr0 = ATTR0_Y(cheat.y - hOff);
+        shadowOAM[32].attr1 = ATTR1_X(cheat.x - vOff);
+        shadowOAM[32].attr2 = ATTR2_PALROW(1) | ATTR2_TILEID(16, 1) | ATTR2_PRIORITY(0);
+    } else {
+        shadowOAM[32].attr0 = ATTR0_HIDE;
+    }
+}
+
 // ============================= score (SC) ============================= //
 
-void initSC() {
-    SC.x = 8;
-    SC.y = 8;
-    SC.height = 8;
-    SC.width = 32;
-}
+// void initSC() {
+//     SC.x = 8;
+//     SC.y = 8;
+//     SC.height = 8;
+//     SC.width = 32;
+// }
 
-void drawSC() {
+// void drawSC() {
 
-    shadowOAM[14].attr0 = ATTR0_4BPP | ATTR0_WIDE | ATTR0_Y(SC.y);
-    shadowOAM[14].attr1 = ATTR1_SMALL | ATTR1_X(SC.x);
-    shadowOAM[14].attr2 = ATTR2_PALROW(0) | ATTR2_TILEID(2, 31);
+//     shadowOAM[14].attr0 = ATTR0_4BPP | ATTR0_WIDE | ATTR0_Y(SC.y);
+//     shadowOAM[14].attr1 = ATTR1_SMALL | ATTR1_X(SC.x);
+//     shadowOAM[14].attr2 = ATTR2_PALROW(0) | ATTR2_TILEID(2, 31);
 
-    DMANow(3, shadowOAM, OAM, 128*4);
+//     DMANow(3, shadowOAM, OAM, 128*4);
+// }
 
-    // debuggbug
-    if ((BUTTON_PRESSED(BUTTON_LSHOULDER))|| (score == 5)) {
-        goToWin();
-    }
-}
+// // ============================= score number ============================= //
+// void initPoints() {
+//     points.width = 8;
+//     points.height = 8;
+//     points.x = 32;
+//     points.y = 8;
+// }
 
-// ============================= score number ============================= //
-void initPoints() {
-    points.width = 8;
-    points.height = 8;
-    points.x = 32;
-    points.y = 8;
-}
+// void drawPoints() {
 
-void drawPoints() {
+//     // only display 0
+//     if (score == 0) {
+//         shadowOAM[15].attr0 = ATTR0_4BPP | ATTR0_Y(points.y);
+//         shadowOAM[15].attr1 = ATTR1_X(points.x);
+//         shadowOAM[15].attr2 = ATTR2_PALROW(0) | ATTR2_TILEID(15, 31);
 
-    // only display 0
-    if (score == 0) {
-        shadowOAM[15].attr0 = ATTR0_4BPP | ATTR0_Y(points.y);
-        shadowOAM[15].attr1 = ATTR1_X(points.x);
-        shadowOAM[15].attr2 = ATTR2_PALROW(0) | ATTR2_TILEID(15, 31);
+//     // first digit empty, second digit ones
+//     } else if (score < 10) {
+//         shadowOAM[15].attr0 = ATTR0_4BPP | ATTR0_Y(points.y);
+//         shadowOAM[15].attr1 = ATTR1_X(points.x + 8);
+//         shadowOAM[15].attr2 = ATTR2_PALROW(0) | ATTR2_TILEID(5 + score, 31);
 
-    // first digit empty, second digit ones
-    } else if (score < 10) {
-        shadowOAM[15].attr0 = ATTR0_4BPP | ATTR0_Y(points.y);
-        shadowOAM[15].attr1 = ATTR1_X(points.x + 8);
-        shadowOAM[15].attr2 = ATTR2_PALROW(0) | ATTR2_TILEID(5 + score, 31);
+//     // first digit 1, second digit ones
+//     } else if ((score > 10) && (score < 20)) {
+//         shadowOAM[15].attr0 = ATTR0_4BPP | ATTR0_Y(points.y);
+//         shadowOAM[15].attr1 = ATTR1_X(points.x);
+//         shadowOAM[15].attr2 = ATTR2_PALROW(0) | ATTR2_TILEID(6, 31);
 
-    // first digit 1, second digit ones
-    } else if ((score > 10) && (score < 20)) {
-        shadowOAM[15].attr0 = ATTR0_4BPP | ATTR0_Y(points.y);
-        shadowOAM[15].attr1 = ATTR1_X(points.x);
-        shadowOAM[15].attr2 = ATTR2_PALROW(0) | ATTR2_TILEID(6, 31);
-
-        shadowOAM[16].attr0 = ATTR0_4BPP | ATTR0_Y(points.y);
-        shadowOAM[16].attr1 = ATTR1_X(points.x + 8);
-        shadowOAM[16].attr2 = ATTR2_PALROW(0) | ATTR2_TILEID((5 + score - 10), 31);
+//         shadowOAM[16].attr0 = ATTR0_4BPP | ATTR0_Y(points.y);
+//         shadowOAM[16].attr1 = ATTR1_X(points.x + 8);
+//         shadowOAM[16].attr2 = ATTR2_PALROW(0) | ATTR2_TILEID((5 + score - 10), 31);
 
 
-    // first digit 2, second digit ones
-    } else if (score > 20) {
-        shadowOAM[15].attr0 = ATTR0_8BPP | ATTR0_Y(points.y);
-        shadowOAM[15].attr1 = ATTR1_X(points.x);
-        shadowOAM[15].attr2 = ATTR2_PALROW(0) | ATTR2_TILEID(7, 31);
+//     // first digit 2, second digit ones
+//     } else if (score > 20) {
+//         shadowOAM[15].attr0 = ATTR0_8BPP | ATTR0_Y(points.y);
+//         shadowOAM[15].attr1 = ATTR1_X(points.x);
+//         shadowOAM[15].attr2 = ATTR2_PALROW(0) | ATTR2_TILEID(7, 31);
     
-        shadowOAM[16].attr0 = ATTR0_4BPP | ATTR0_Y(points.y);
-        shadowOAM[16].attr1 = ATTR1_X(points.x + 8);
-        shadowOAM[16].attr2 = ATTR2_PALROW(0) | ATTR2_TILEID((5 + score - 10), 31);
-    }
-}
+//         shadowOAM[16].attr0 = ATTR0_4BPP | ATTR0_Y(points.y);
+//         shadowOAM[16].attr1 = ATTR1_X(points.x + 8);
+//         shadowOAM[16].attr2 = ATTR2_PALROW(0) | ATTR2_TILEID((5 + score - 10), 31);
+//     }
+// }
 
-// ============================= table ============================= //
-void initTable() {
-    if (level == 1) {
-        table.x = 128;
-        table.y = 168;
-        table.width = 32;
-        table.height = 64;
-    }
-}   
+// // ============================= table ============================= //
+// void initTable() {
+//     if (level == 1) {
+//         table.x = 128;
+//         table.y = 168;
+//         table.width = 32;
+//         table.height = 64;
+//     }
+// }   
 
-void drawTable() {
-    shadowOAM[17].attr0 = ATTR0_8BPP | ATTR0_TALL | ATTR0_Y(table.y);
-    shadowOAM[17].attr1 = ATTR1_LARGE | ATTR1_X(table.x);
-    shadowOAM[17].attr2 = ATTR2_PALROW(0) | ATTR2_TILEID(4, 11) | ATTR2_PRIORITY(0);
-}
+// void drawTable() {
+//     shadowOAM[17].attr0 = ATTR0_8BPP | ATTR0_TALL | ATTR0_Y(table.y);
+//     shadowOAM[17].attr1 = ATTR1_LARGE | ATTR1_X(table.x);
+//     shadowOAM[17].attr2 = ATTR2_PALROW(0) | ATTR2_TILEID(4, 11) | ATTR2_PRIORITY(0);
+// }

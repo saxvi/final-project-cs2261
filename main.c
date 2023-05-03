@@ -44,6 +44,11 @@ void initGame();
 void updateGame();
 void drawGame();
 
+void initStart();
+void initCheat();
+void updateCheat();
+void drawCheat();
+
 void start();
 void goToStart();
 void instructions();
@@ -273,8 +278,6 @@ void goToInstructions() {
 
     //pauseSounds();
 
-    
-
     state = INSTRUCTIONS;
 }
 
@@ -340,6 +343,13 @@ hideSprites();
 
 // sets up pause state
 void goToPause() {
+
+    REG_BG0HOFF = 0;
+    REG_BG0VOFF = 0;
+
+    hOff = 0;
+    vOff = 0;
+
     DMANow(3, pausePal, PALETTE, 256);
 
     REG_BG0CNT = BG_SIZE_SMALL | BG_CHARBLOCK(0) | BG_SCREENBLOCK(31);
@@ -403,7 +413,6 @@ void game() {
     if (BUTTON_PRESSED(BUTTON_START)) {
         REG_BG0HOFF = 0;
         REG_BG0VOFF = 0;
-
         goToPause();
     }
 

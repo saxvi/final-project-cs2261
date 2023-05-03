@@ -479,46 +479,55 @@ goToPause:
 	@ Function supports interworking.
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
-	push	{r4, lr}
+	push	{r4, r5, r6, lr}
+	mov	ip, #0
+	mov	r5, #67108864
+	ldr	r0, .L46
+	ldr	lr, .L46+4
+	strh	ip, [r5, #16]	@ movhi
+	ldr	r4, .L46+8
+	strh	ip, [r5, #18]	@ movhi
 	mov	r3, #256
-	ldr	r4, .L46
+	str	ip, [r0]
 	mov	r2, #83886080
 	mov	r0, #3
-	ldr	r1, .L46+4
+	ldr	r1, .L46+12
+	str	ip, [lr]
 	mov	lr, pc
 	bx	r4
-	mov	r2, #67108864
-	mov	r1, #7936
+	mov	r2, #7936
 	mov	r3, #1936
-	strh	r1, [r2, #8]	@ movhi
+	strh	r2, [r5, #8]	@ movhi
 	mov	r0, #3
 	mov	r2, #100663296
-	ldr	r1, .L46+8
+	ldr	r1, .L46+16
 	mov	lr, pc
 	bx	r4
 	mov	r0, #3
-	ldr	r2, .L46+12
-	ldr	r1, .L46+16
+	ldr	r2, .L46+20
+	ldr	r1, .L46+24
 	mov	r3, #1024
 	mov	lr, pc
 	bx	r4
-	ldr	r3, .L46+20
+	ldr	r3, .L46+28
 	mov	lr, pc
 	bx	r3
 	mov	r3, #512
 	mov	r2, #117440512
 	mov	r0, #3
-	ldr	r1, .L46+24
+	ldr	r1, .L46+32
 	mov	lr, pc
 	bx	r4
 	mov	r2, #3
-	ldr	r3, .L46+28
-	pop	{r4, lr}
+	ldr	r3, .L46+36
+	pop	{r4, r5, r6, lr}
 	str	r2, [r3]
 	bx	lr
 .L47:
 	.align	2
 .L46:
+	.word	hOff
+	.word	vOff
 	.word	DMANow
 	.word	pausePal
 	.word	pauseTiles

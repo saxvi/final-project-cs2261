@@ -1169,6 +1169,11 @@ void initGame();
 void updateGame();
 void drawGame();
 
+void initStart();
+void initCheat();
+void updateCheat();
+void drawCheat();
+
 void start();
 void goToStart();
 void instructions();
@@ -1398,8 +1403,6 @@ void goToInstructions() {
 
 
 
-
-
     state = INSTRUCTIONS;
 }
 
@@ -1465,6 +1468,13 @@ hideSprites();
 
 
 void goToPause() {
+
+    (*(volatile unsigned short *)0x04000010) = 0;
+    (*(volatile unsigned short *)0x04000012) = 0;
+
+    hOff = 0;
+    vOff = 0;
+
     DMANow(3, pausePal, ((unsigned short *)0x5000000), 256);
 
     (*(volatile unsigned short*)0x4000008) = (0 << 14) | ((0) << 2) | ((31) << 8);
@@ -1528,7 +1538,6 @@ void game() {
     if ((!(~(oldButtons) & ((1<<3))) && (~(buttons) & ((1<<3))))) {
         (*(volatile unsigned short *)0x04000010) = 0;
         (*(volatile unsigned short *)0x04000012) = 0;
-
         goToPause();
     }
 
