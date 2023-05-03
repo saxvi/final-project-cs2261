@@ -977,7 +977,7 @@ extern const unsigned short instructionsPal[256];
 # 22 "main.c" 2
 # 1 "instr2.h" 1
 # 22 "instr2.h"
-extern const unsigned short instr2Tiles[8480];
+extern const unsigned short instr2Tiles[8128];
 
 
 extern const unsigned short instr2Map[1024];
@@ -1035,6 +1035,23 @@ extern const unsigned short extraMap[1024];
 
 extern const unsigned short extraPal[256];
 # 28 "main.c" 2
+# 1 "tilemap.h" 1
+
+
+
+
+
+
+
+extern const unsigned short tilemapMap[1024];
+# 29 "main.c" 2
+# 1 "tileset.h" 1
+# 21 "tileset.h"
+extern const unsigned short tilesetTiles[9600];
+
+
+extern const unsigned short tilesetPal[256];
+# 30 "main.c" 2
 
 # 1 "spritesheet.h" 1
 # 21 "spritesheet.h"
@@ -1042,7 +1059,7 @@ extern const unsigned short spritesheetTiles[16384];
 
 
 extern const unsigned short spritesheetPal[256];
-# 30 "main.c" 2
+# 32 "main.c" 2
 # 1 "game.h" 1
 # 16 "game.h"
     extern int score;
@@ -1122,7 +1139,7 @@ extern const unsigned short spritesheetPal[256];
 
     void initTable();
     void drawTable();
-# 31 "main.c" 2
+# 33 "main.c" 2
 
 # 1 "startSong.h" 1
 
@@ -1130,35 +1147,35 @@ extern const unsigned short spritesheetPal[256];
 extern const unsigned int startSong_sampleRate;
 extern const unsigned int startSong_length;
 extern const signed char startSong_data[];
-# 33 "main.c" 2
+# 35 "main.c" 2
 # 1 "gameSong.h" 1
 
 
 extern const unsigned int gameSong_sampleRate;
 extern const unsigned int gameSong_length;
 extern const signed char gameSong_data[];
-# 34 "main.c" 2
+# 36 "main.c" 2
 # 1 "goofyahhbeatEXTRA.h" 1
 
 
 extern const unsigned int goofyahhbeatEXTRA_sampleRate;
 extern const unsigned int goofyahhbeatEXTRA_length;
 extern const signed char goofyahhbeatEXTRA_data[];
-# 35 "main.c" 2
+# 37 "main.c" 2
 # 1 "meow.h" 1
 
 
 extern const unsigned int meow_sampleRate;
 extern const unsigned int meow_length;
 extern const signed char meow_data[];
-# 36 "main.c" 2
+# 38 "main.c" 2
 # 1 "scoreUp.h" 1
 
 
 extern const unsigned int scoreUp_sampleRate;
 extern const unsigned int scoreUp_length;
 extern const signed char scoreUp_data[];
-# 37 "main.c" 2
+# 39 "main.c" 2
 
 
 
@@ -1199,6 +1216,7 @@ int seed;
 int level;
 int time;
 int state;
+int vBlankCount;
 
 enum {
     START,
@@ -1431,12 +1449,12 @@ void instructions() {
 
 
 void goToInstr2() {
-    DMANow(3, instr2Pal, ((unsigned short *)0x5000000), 256);
 
-    (*(volatile unsigned short*)0x4000008) = (0 << 14) | ((0) << 2) | ((31) << 8) | (1 << 7);
+    (*(volatile unsigned short*)0x4000008) = (0 << 14) | ((0) << 2) | ((31) << 8);
 
-    DMANow(3, instr2Tiles, &((charblock *)0x06000000)[0], 16960/2);
-    DMANow(3, instr2Map, &((screenblock *)0x6000000)[31], 2048/2);
+    DMANow(3, tilesetPal, ((unsigned short *)0x5000000), 512 / 2);
+    DMANow(3, tilesetTiles, &((charblock *)0x06000000)[0], 19200 / 2);
+    DMANow(3, tilemapMap, &((screenblock *)0x6000000)[31], (2048) / 2);
 
     waitForVBlank();
     DMANow(3, shadowOAM, ((OBJ_ATTR*)(0x7000000)), 128*4);
@@ -1447,6 +1465,17 @@ void goToInstr2() {
 void instr2() {
 
 hideSprites();
+
+
+    if (time % 10) {
+        ((screenblock *)0x6000000)[31].tilemap[((15) * (32) + (7))] = ((0 & 0x3FF));
+        ((screenblock *)0x6000000)[31].tilemap[((15) * (32) + (22))] = ((1 & 0x3FF));
+    }
+    if (time % 10 + 5) {
+        ((screenblock *)0x6000000)[31].tilemap[((15) * (32) + (7))] = ((457 & 0x3FF));
+        ((screenblock *)0x6000000)[31].tilemap[((15) * (32) + (22))] = ((472 & 0x3FF));
+    }
+
 
 
     if ((!(~(oldButtons) & ((1<<3))) && (~(buttons) & ((1<<3))))) {

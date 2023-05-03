@@ -731,44 +731,96 @@ instr2Map:
 	.short	1
 	.short	1
 	.short	1
+	.short	1
+	.short	1
+	.short	1
+	.short	1
+	.short	1
+	.short	1
+	.short	1
+	.short	1
+	.short	1
+	.short	1
+	.short	1
+	.short	1
+	.short	1
+	.short	1
+	.short	1
+	.short	1
+	.short	1
+	.short	1
+	.short	1
+	.short	1
+	.short	1
+	.short	1
+	.short	1
+	.short	1
+	.short	0
+	.short	0
+	.short	1
+	.short	1
+	.short	1
+	.short	1
+	.short	1
+	.short	1
+	.short	1
 	.short	228
+	.short	1
 	.short	229
-	.short	1
 	.short	230
+	.short	1
+	.short	1
+	.short	1
+	.short	1
+	.short	1
+	.short	1
+	.short	1
+	.short	1
 	.short	231
-	.short	1
-	.short	1
-	.short	1
-	.short	1
-	.short	1
-	.short	1
-	.short	1
-	.short	1
 	.short	232
+	.short	1
+	.short	1252
+	.short	1
+	.short	1
+	.short	1
+	.short	1
+	.short	1
+	.short	1
+	.short	1
+	.short	0
+	.short	0
+	.short	1
+	.short	1
+	.short	1
+	.short	1
+	.short	1
+	.short	1
+	.short	1
 	.short	233
-	.short	1
 	.short	234
-	.short	1
-	.short	1
-	.short	1
-	.short	1
-	.short	1
-	.short	1
-	.short	1
-	.short	0
-	.short	0
-	.short	1
-	.short	1
-	.short	1
-	.short	1
-	.short	1
-	.short	1
-	.short	1
 	.short	235
 	.short	236
-	.short	237
-	.short	238
 	.short	1
+	.short	1
+	.short	1
+	.short	1
+	.short	1
+	.short	1
+	.short	1
+	.short	1
+	.short	4333
+	.short	4334
+	.short	1258
+	.short	1257
+	.short	1
+	.short	1
+	.short	1
+	.short	1
+	.short	1
+	.short	1
+	.short	1
+	.short	0
+	.short	0
 	.short	1
 	.short	1
 	.short	1
@@ -777,7 +829,7 @@ instr2Map:
 	.short	1
 	.short	1
 	.short	239
-	.short	4336
+	.short	240
 	.short	241
 	.short	242
 	.short	1
@@ -787,31 +839,11 @@ instr2Map:
 	.short	1
 	.short	1
 	.short	1
-	.short	0
-	.short	0
-	.short	1
-	.short	1
-	.short	1
-	.short	1
-	.short	1
-	.short	1
 	.short	1
 	.short	243
-	.short	244
-	.short	245
-	.short	246
-	.short	1
-	.short	1
-	.short	1
-	.short	1
-	.short	1
-	.short	1
-	.short	1
-	.short	1
-	.short	4343
-	.short	4344
-	.short	4345
-	.short	4346
+	.short	4340
+	.short	4341
+	.short	4342
 	.short	1
 	.short	1
 	.short	1
@@ -828,9 +860,10 @@ instr2Map:
 	.short	1
 	.short	1
 	.short	1
-	.short	251
-	.short	252
-	.short	253
+	.short	247
+	.short	248
+	.short	249
+	.short	250
 	.short	1
 	.short	1
 	.short	1
@@ -839,43 +872,10 @@ instr2Map:
 	.short	1
 	.short	1
 	.short	1
-	.short	1
-	.short	254
-	.short	4351
-	.short	4352
-	.short	4353
-	.short	1
-	.short	1
-	.short	1
-	.short	1
-	.short	1
-	.short	1
-	.short	1
-	.short	0
-	.short	0
-	.short	1
-	.short	1
-	.short	1
-	.short	1
-	.short	1
-	.short	1
-	.short	1
-	.short	258
-	.short	259
-	.short	260
-	.short	1
-	.short	1
-	.short	1
-	.short	1
-	.short	1
-	.short	1
-	.short	1
-	.short	1
-	.short	1
-	.short	261
-	.short	4358
-	.short	263
-	.short	4360
+	.short	1274
+	.short	4347
+	.short	4348
+	.short	4349
 	.short	1
 	.short	1
 	.short	1
@@ -1302,7 +1302,7 @@ instr2Map:
 	.short	0
 	.short	0
 	.type	instr2Tiles, %object
-	.size	instr2Tiles, 16960
+	.size	instr2Tiles, 16256
 instr2Tiles:
 	.short	0
 	.short	0
@@ -8604,80 +8604,33 @@ instr2Tiles:
 	.short	2056
 	.short	2056
 	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
 	.short	771
 	.short	2056
 	.short	2056
 	.short	2056
 	.short	776
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	776
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
 	.short	771
 	.short	2056
 	.short	2056
-	.short	2056
+	.short	776
 	.short	779
 	.short	2051
 	.short	2056
 	.short	2056
+	.short	2819
+	.short	2051
 	.short	2056
 	.short	2056
+	.short	259
+	.short	779
 	.short	2056
 	.short	2056
+	.short	259
+	.short	779
 	.short	2056
 	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
+	.short	259
+	.short	769
 	.short	2056
 	.short	2056
 	.short	771
@@ -8691,26 +8644,26 @@ instr2Tiles:
 	.short	2056
 	.short	3587
 	.short	781
-	.short	771
+	.short	2056
+	.short	776
+	.short	2827
+	.short	2827
+	.short	2056
+	.short	2819
+	.short	2827
+	.short	2827
 	.short	776
 	.short	2827
 	.short	2827
 	.short	2827
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
+	.short	776
+	.short	2827
+	.short	2827
+	.short	3597
+	.short	776
+	.short	2827
+	.short	2827
+	.short	779
 	.short	2056
 	.short	776
 	.short	771
@@ -8719,31 +8672,30 @@ instr2Tiles:
 	.short	2307
 	.short	2825
 	.short	2051
-	.short	2056
+	.short	771
 	.short	3339
 	.short	2825
 	.short	2051
-	.short	2056
+	.short	2827
 	.short	3595
 	.short	777
 	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
+	.short	2827
+	.short	2827
+	.short	2315
+	.short	2051
+	.short	2827
+	.short	2827
+	.short	2827
+	.short	2051
+	.short	2827
+	.short	3595
+	.short	2829
+	.short	2051
+	.short	2827
+	.short	779
+	.short	2827
+	.short	2051
 	.short	2056
 	.short	4883
 	.short	2067
@@ -8760,198 +8712,6 @@ instr2Tiles:
 	.short	6419
 	.short	6929
 	.short	6939
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	4883
-	.short	4883
-	.short	2056
-	.short	4872
-	.short	6929
-	.short	2067
-	.short	2056
-	.short	4371
-	.short	4881
-	.short	2056
-	.short	2056
-	.short	6939
-	.short	6939
-	.short	2067
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	4883
-	.short	2056
-	.short	2056
-	.short	4883
-	.short	2067
-	.short	2056
-	.short	4872
-	.short	6931
-	.short	2067
-	.short	2819
-	.short	2051
-	.short	2056
-	.short	2056
-	.short	259
-	.short	779
-	.short	2056
-	.short	2056
-	.short	259
-	.short	779
-	.short	2056
-	.short	2056
-	.short	259
-	.short	769
-	.short	2056
-	.short	2056
-	.short	259
-	.short	769
-	.short	2051
-	.short	2056
-	.short	259
-	.short	2305
-	.short	771
-	.short	2056
-	.short	259
-	.short	2827
-	.short	2825
-	.short	771
-	.short	259
-	.short	2827
-	.short	2827
-	.short	2313
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	776
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	776
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	776
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2307
-	.short	2056
-	.short	776
-	.short	771
-	.short	2313
-	.short	771
-	.short	2307
-	.short	2313
-	.short	2825
-	.short	2825
-	.short	2313
-	.short	2825
-	.short	2827
-	.short	2819
-	.short	2827
-	.short	2827
-	.short	2827
-	.short	2827
-	.short	2827
-	.short	2827
-	.short	2827
-	.short	2827
-	.short	2827
-	.short	3597
-	.short	2827
-	.short	2827
-	.short	2827
-	.short	779
-	.short	2827
-	.short	2827
-	.short	2827
-	.short	771
-	.short	2827
-	.short	2315
-	.short	2827
-	.short	2827
-	.short	3341
-	.short	2827
-	.short	2825
-	.short	3595
-	.short	3341
-	.short	2827
-	.short	2315
-	.short	2313
-	.short	3597
-	.short	2827
-	.short	2315
-	.short	2051
-	.short	2056
-	.short	2827
-	.short	2827
-	.short	2051
-	.short	2056
-	.short	3595
-	.short	2829
-	.short	2051
-	.short	2056
-	.short	779
-	.short	2827
-	.short	2051
-	.short	2056
-	.short	779
-	.short	2819
-	.short	779
-	.short	2056
-	.short	3341
-	.short	2829
-	.short	779
-	.short	2056
-	.short	771
-	.short	3587
-	.short	779
-	.short	2056
-	.short	782
-	.short	3598
-	.short	779
-	.short	2056
 	.short	4872
 	.short	6937
 	.short	6929
@@ -8968,22 +8728,22 @@ instr2Tiles:
 	.short	5147
 	.short	6941
 	.short	6939
-	.short	6931
-	.short	7451
-	.short	6932
+	.short	2056
+	.short	4883
+	.short	4883
+	.short	2056
+	.short	4872
+	.short	6929
+	.short	2067
+	.short	2056
+	.short	4371
+	.short	4881
+	.short	2056
+	.short	2056
 	.short	6939
-	.short	6931
-	.short	4379
-	.short	4369
-	.short	4369
-	.short	6931
-	.short	5137
-	.short	5140
-	.short	4369
-	.short	6931
-	.short	4369
-	.short	4372
-	.short	4369
+	.short	6939
+	.short	2067
+	.short	2056
 	.short	6939
 	.short	6939
 	.short	4891
@@ -9000,118 +8760,55 @@ instr2Tiles:
 	.short	6939
 	.short	6939
 	.short	2067
-	.short	5149
-	.short	6939
-	.short	6939
-	.short	4889
-	.short	6939
-	.short	6939
-	.short	6937
-	.short	6425
-	.short	6929
-	.short	6427
-	.short	6939
-	.short	6427
-	.short	6425
-	.short	6937
-	.short	6929
-	.short	6939
 	.short	2056
+	.short	259
+	.short	769
+	.short	2051
 	.short	2056
+	.short	259
+	.short	2305
+	.short	771
 	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	4883
-	.short	2067
-	.short	2056
-	.short	2056
-	.short	6425
-	.short	4889
-	.short	4883
-	.short	4883
-	.short	6427
-	.short	6425
-	.short	6427
-	.short	6425
-	.short	2056
-	.short	4872
-	.short	4891
-	.short	2056
-	.short	2056
-	.short	6931
-	.short	4881
-	.short	2056
-	.short	2056
-	.short	6931
-	.short	4881
-	.short	2056
-	.short	2056
-	.short	4371
-	.short	4881
-	.short	2056
-	.short	4872
-	.short	4371
-	.short	4881
-	.short	2056
-	.short	4883
-	.short	4377
-	.short	4881
-	.short	2056
-	.short	6427
-	.short	6939
-	.short	4881
-	.short	2056
-	.short	6939
-	.short	6939
-	.short	4881
+	.short	259
+	.short	2827
+	.short	2825
 	.short	2056
 	.short	259
 	.short	2827
 	.short	2827
+	.short	2056
+	.short	259
 	.short	2827
+	.short	2827
+	.short	2056
 	.short	776
 	.short	2827
 	.short	2827
-	.short	2827
+	.short	2056
 	.short	776
 	.short	2827
 	.short	2827
-	.short	2827
+	.short	2056
 	.short	776
 	.short	2827
 	.short	2827
-	.short	2827
+	.short	2056
+	.short	2056
+	.short	2056
+	.short	2056
+	.short	2056
+	.short	2056
 	.short	776
+	.short	771
+	.short	771
+	.short	771
+	.short	2307
+	.short	2313
+	.short	2313
+	.short	2825
+	.short	2313
+	.short	2825
 	.short	2827
-	.short	2827
-	.short	2827
-	.short	776
-	.short	2827
-	.short	2827
-	.short	2827
-	.short	776
-	.short	2827
-	.short	2827
-	.short	2315
-	.short	776
-	.short	2827
-	.short	2827
-	.short	2315
 	.short	2827
 	.short	2827
 	.short	2825
@@ -9127,87 +8824,86 @@ instr2Tiles:
 	.short	2827
 	.short	2827
 	.short	2827
+	.short	2307
 	.short	2827
 	.short	2827
-	.short	2827
-	.short	2827
-	.short	2827
-	.short	2827
-	.short	2827
-	.short	2827
-	.short	2827
-	.short	2827
-	.short	2827
+	.short	771
+	.short	2313
+	.short	2315
 	.short	2827
 	.short	2827
 	.short	2825
 	.short	2827
+	.short	2825
+	.short	3595
 	.short	2827
+	.short	2827
+	.short	2315
+	.short	2313
 	.short	2827
 	.short	3595
 	.short	2827
 	.short	2313
-	.short	3593
+	.short	2827
 	.short	3595
 	.short	2830
 	.short	2315
-	.short	257
+	.short	2827
 	.short	3337
 	.short	3598
 	.short	2315
-	.short	2318
+	.short	2827
 	.short	3337
 	.short	3597
 	.short	3598
-	.short	3598
-	.short	2313
-	.short	3341
-	.short	3597
-	.short	3598
-	.short	2315
-	.short	3337
-	.short	3341
-	.short	3597
 	.short	2827
+	.short	779
+	.short	2819
+	.short	779
 	.short	3341
 	.short	3341
+	.short	2829
+	.short	779
+	.short	3341
+	.short	771
+	.short	3587
+	.short	779
 	.short	3597
-	.short	2827
-	.short	3341
-	.short	3341
 	.short	782
+	.short	3598
+	.short	779
+	.short	3593
 	.short	3598
 	.short	270
 	.short	779
-	.short	2056
+	.short	257
 	.short	257
 	.short	2817
 	.short	779
-	.short	2056
+	.short	2318
 	.short	257
 	.short	777
 	.short	2051
-	.short	2056
+	.short	3598
 	.short	270
 	.short	2051
 	.short	2056
-	.short	2056
-	.short	769
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	779
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2051
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
+	.short	6931
+	.short	7451
+	.short	6932
+	.short	6939
+	.short	6931
+	.short	4379
+	.short	4369
+	.short	4369
+	.short	6931
+	.short	5137
+	.short	5140
+	.short	4369
+	.short	6931
+	.short	4369
+	.short	4372
+	.short	4369
 	.short	6931
 	.short	4369
 	.short	4369
@@ -9224,22 +8920,22 @@ instr2Tiles:
 	.short	4872
 	.short	7697
 	.short	7710
-	.short	2056
-	.short	2056
-	.short	4371
-	.short	7710
-	.short	2056
-	.short	2056
-	.short	6931
-	.short	7454
-	.short	2056
-	.short	2056
-	.short	4872
-	.short	7454
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	7699
+	.short	5149
+	.short	6939
+	.short	6939
+	.short	4889
+	.short	6939
+	.short	6939
+	.short	6937
+	.short	6425
+	.short	6929
+	.short	6427
+	.short	6939
+	.short	6427
+	.short	6425
+	.short	6937
+	.short	6929
+	.short	6939
 	.short	6425
 	.short	4379
 	.short	6929
@@ -9256,182 +8952,150 @@ instr2Tiles:
 	.short	7454
 	.short	6417
 	.short	6939
-	.short	7454
-	.short	4381
-	.short	6425
-	.short	6939
-	.short	7453
-	.short	6417
-	.short	6937
-	.short	6939
-	.short	7453
-	.short	4369
-	.short	6939
-	.short	6939
-	.short	7453
-	.short	7453
-	.short	6939
-	.short	6939
-	.short	6427
-	.short	6939
-	.short	6939
-	.short	6939
-	.short	6939
-	.short	6939
-	.short	6939
-	.short	6939
-	.short	6939
-	.short	6939
-	.short	6939
-	.short	6939
-	.short	6939
-	.short	6939
-	.short	6939
-	.short	6939
-	.short	6939
-	.short	6939
-	.short	6939
-	.short	6939
-	.short	6939
-	.short	6939
-	.short	6939
-	.short	6939
-	.short	6939
-	.short	6939
-	.short	4379
-	.short	6929
-	.short	6939
-	.short	6939
-	.short	4369
-	.short	4369
-	.short	6939
-	.short	6939
-	.short	4881
-	.short	2056
-	.short	6939
-	.short	6939
-	.short	2067
-	.short	2056
-	.short	6939
-	.short	6939
-	.short	2067
-	.short	2056
-	.short	6939
-	.short	6939
-	.short	2067
-	.short	2056
-	.short	6939
-	.short	6939
-	.short	2067
-	.short	2056
-	.short	6939
-	.short	6939
-	.short	2067
-	.short	2056
-	.short	6939
-	.short	6939
-	.short	2067
-	.short	2056
-	.short	6939
-	.short	6939
-	.short	2067
 	.short	2056
 	.short	776
 	.short	2827
 	.short	2827
-	.short	265
+	.short	2056
+	.short	776
+	.short	2827
+	.short	2827
+	.short	2056
+	.short	776
+	.short	2827
+	.short	2827
+	.short	2056
+	.short	776
+	.short	2827
+	.short	2827
+	.short	2056
+	.short	776
+	.short	2827
+	.short	2827
+	.short	2056
 	.short	2056
 	.short	2819
 	.short	2315
-	.short	265
+	.short	2056
 	.short	2056
 	.short	3331
 	.short	2317
-	.short	3593
+	.short	2056
 	.short	2056
 	.short	3587
 	.short	2317
-	.short	3598
-	.short	2056
-	.short	259
-	.short	3342
-	.short	3598
-	.short	776
-	.short	257
-	.short	3342
-	.short	781
-	.short	776
-	.short	257
-	.short	3598
-	.short	771
-	.short	776
-	.short	3585
-	.short	3598
-	.short	259
+	.short	2827
+	.short	2827
+	.short	2827
+	.short	2827
+	.short	2827
+	.short	2827
+	.short	2827
+	.short	2827
+	.short	2315
+	.short	2827
+	.short	2827
+	.short	2827
+	.short	2315
 	.short	2825
 	.short	2827
 	.short	2827
+	.short	265
+	.short	2825
 	.short	2827
+	.short	2827
+	.short	265
 	.short	2305
 	.short	2827
 	.short	2827
-	.short	2827
+	.short	3593
 	.short	2305
 	.short	2827
 	.short	2827
-	.short	2827
+	.short	3598
 	.short	270
 	.short	2830
 	.short	2827
-	.short	2315
-	.short	771
-	.short	3585
-	.short	2318
-	.short	2313
-	.short	257
-	.short	771
-	.short	771
 	.short	2827
-	.short	257
-	.short	2051
-	.short	2056
-	.short	771
-	.short	257
-	.short	2051
-	.short	2056
-	.short	771
-	.short	2827
-	.short	3341
-	.short	3341
-	.short	782
-	.short	2315
-	.short	3337
-	.short	3341
-	.short	782
-	.short	2313
-	.short	3337
-	.short	3341
-	.short	782
 	.short	2313
 	.short	3341
 	.short	3597
-	.short	782
+	.short	2827
+	.short	2315
+	.short	3337
+	.short	3341
+	.short	2827
+	.short	2827
+	.short	3341
+	.short	3341
+	.short	2827
+	.short	2827
+	.short	3341
+	.short	3341
+	.short	2827
+	.short	2827
+	.short	3341
+	.short	3341
+	.short	2827
+	.short	2315
+	.short	3337
+	.short	3341
+	.short	2827
 	.short	2313
+	.short	3337
+	.short	3341
+	.short	2315
+	.short	2313
+	.short	3341
+	.short	3597
 	.short	3598
-	.short	782
 	.short	769
-	.short	3593
-	.short	3598
-	.short	259
-	.short	769
-	.short	3595
-	.short	3598
-	.short	259
+	.short	2056
+	.short	2056
+	.short	3597
+	.short	779
+	.short	2056
+	.short	2056
+	.short	3597
 	.short	2051
-	.short	3587
-	.short	3598
+	.short	2056
+	.short	2056
 	.short	782
 	.short	2056
+	.short	2056
+	.short	2056
+	.short	782
+	.short	2056
+	.short	2056
+	.short	2056
+	.short	782
+	.short	2056
+	.short	2056
+	.short	2056
+	.short	782
+	.short	2056
+	.short	2056
+	.short	2056
+	.short	782
+	.short	2056
+	.short	2056
+	.short	2056
+	.short	2056
+	.short	2056
+	.short	4371
+	.short	7710
+	.short	2056
+	.short	2056
+	.short	6931
+	.short	7454
+	.short	2056
+	.short	2056
+	.short	4872
+	.short	7454
+	.short	2056
+	.short	2056
+	.short	2056
+	.short	7699
 	.short	2056
 	.short	2056
 	.short	2056
@@ -9448,54 +9112,54 @@ instr2Tiles:
 	.short	2056
 	.short	2056
 	.short	4371
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	4371
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	4371
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	4872
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	7453
-	.short	7453
-	.short	6939
-	.short	6939
-	.short	7453
-	.short	6429
-	.short	6937
-	.short	6939
-	.short	7453
-	.short	6429
+	.short	7454
+	.short	4381
 	.short	6425
 	.short	6939
-	.short	4369
-	.short	4369
-	.short	6425
-	.short	6937
-	.short	4371
-	.short	4369
-	.short	6425
-	.short	6425
-	.short	4881
-	.short	4369
+	.short	7453
 	.short	6417
+	.short	6937
 	.short	6939
-	.short	4881
+	.short	7453
 	.short	4369
+	.short	6939
+	.short	6939
+	.short	7453
+	.short	7453
+	.short	6939
+	.short	6939
+	.short	7453
+	.short	7453
+	.short	6939
+	.short	6939
+	.short	7453
+	.short	6429
+	.short	6937
+	.short	6939
+	.short	7453
+	.short	6429
+	.short	6425
+	.short	6939
+	.short	4369
+	.short	4369
+	.short	6425
+	.short	6937
+	.short	6939
+	.short	6939
+	.short	6939
+	.short	6939
+	.short	6939
+	.short	6939
+	.short	6939
+	.short	6939
+	.short	6939
+	.short	6939
+	.short	4379
 	.short	6929
-	.short	4883
-	.short	4371
+	.short	6939
+	.short	6939
 	.short	4369
-	.short	4881
-	.short	4883
+	.short	4369
 	.short	6939
 	.short	6939
 	.short	4379
@@ -9512,22 +9176,22 @@ instr2Tiles:
 	.short	4379
 	.short	4881
 	.short	4369
-	.short	4377
-	.short	4369
-	.short	4883
-	.short	4369
-	.short	4883
-	.short	4883
-	.short	4369
-	.short	4371
+	.short	6939
+	.short	6939
+	.short	2067
 	.short	2056
-	.short	4872
-	.short	4369
-	.short	4883
+	.short	6939
+	.short	6939
+	.short	2067
 	.short	2056
-	.short	4872
-	.short	4369
-	.short	4881
+	.short	6939
+	.short	6939
+	.short	2067
+	.short	2056
+	.short	6939
+	.short	6939
+	.short	2067
+	.short	2056
 	.short	6939
 	.short	6939
 	.short	2067
@@ -9544,30 +9208,31 @@ instr2Tiles:
 	.short	4881
 	.short	2056
 	.short	2056
-	.short	4369
-	.short	4881
 	.short	2056
 	.short	2056
-	.short	4369
-	.short	4369
-	.short	2067
+	.short	259
+	.short	3342
 	.short	2056
-	.short	4369
-	.short	4369
-	.short	2067
+	.short	776
+	.short	257
+	.short	3342
 	.short	2056
-	.short	4369
-	.short	4369
-	.short	2067
+	.short	776
+	.short	257
+	.short	3598
+	.short	2056
+	.short	776
+	.short	3585
+	.short	3598
 	.short	2056
 	.short	259
 	.short	3598
 	.short	782
-	.short	776
+	.short	2056
 	.short	259
 	.short	3598
 	.short	2051
-	.short	776
+	.short	2056
 	.short	259
 	.short	3585
 	.short	782
@@ -9575,23 +9240,23 @@ instr2Tiles:
 	.short	776
 	.short	771
 	.short	2051
+	.short	3598
+	.short	771
+	.short	3585
+	.short	2318
+	.short	781
+	.short	257
+	.short	771
+	.short	771
+	.short	771
+	.short	257
+	.short	2051
 	.short	2056
+	.short	259
+	.short	257
+	.short	2051
 	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
+	.short	776
 	.short	257
 	.short	769
 	.short	2056
@@ -9607,23 +9272,23 @@ instr2Tiles:
 	.short	776
 	.short	771
 	.short	2051
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
+	.short	2313
+	.short	2313
+	.short	3598
+	.short	782
+	.short	2827
+	.short	3593
+	.short	3598
+	.short	259
+	.short	771
+	.short	3595
+	.short	3598
+	.short	259
+	.short	771
+	.short	3587
+	.short	3598
+	.short	782
+	.short	776
 	.short	3587
 	.short	3598
 	.short	782
@@ -9631,14 +9296,23 @@ instr2Tiles:
 	.short	776
 	.short	3598
 	.short	3598
-	.short	2051
+	.short	2056
 	.short	2056
 	.short	3587
 	.short	3598
-	.short	2051
+	.short	2056
 	.short	2056
 	.short	776
 	.short	771
+	.short	769
+	.short	2056
+	.short	2056
+	.short	2056
+	.short	769
+	.short	2056
+	.short	2056
+	.short	2056
+	.short	2051
 	.short	2056
 	.short	2056
 	.short	2056
@@ -9650,6 +9324,11 @@ instr2Tiles:
 	.short	2056
 	.short	2056
 	.short	2056
+	.short	2051
+	.short	2056
+	.short	2056
+	.short	2056
+	.short	2051
 	.short	2056
 	.short	2056
 	.short	2056
@@ -9657,37 +9336,22 @@ instr2Tiles:
 	.short	2056
 	.short	2056
 	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	4872
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	4872
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
+	.short	4371
+	.short	4369
+	.short	6425
+	.short	6425
+	.short	4881
+	.short	4369
+	.short	6417
+	.short	6939
+	.short	4881
+	.short	4369
+	.short	6929
+	.short	4883
+	.short	4371
+	.short	4369
+	.short	4881
+	.short	4883
 	.short	4371
 	.short	4369
 	.short	4881
@@ -9704,22 +9368,22 @@ instr2Tiles:
 	.short	2067
 	.short	2056
 	.short	2056
+	.short	4377
+	.short	4369
+	.short	4883
+	.short	4369
+	.short	4883
+	.short	4883
+	.short	4369
+	.short	4371
 	.short	2056
+	.short	4872
+	.short	4369
+	.short	4883
 	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
+	.short	4872
+	.short	4369
+	.short	4881
 	.short	2056
 	.short	4371
 	.short	4369
@@ -9736,21 +9400,21 @@ instr2Tiles:
 	.short	4883
 	.short	2067
 	.short	2056
+	.short	4369
+	.short	4881
 	.short	2056
 	.short	2056
+	.short	4369
+	.short	4369
+	.short	2067
 	.short	2056
+	.short	4369
+	.short	4369
+	.short	2067
 	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
+	.short	4369
+	.short	4369
+	.short	2067
 	.short	2056
 	.short	4371
 	.short	4369
@@ -9767,21 +9431,5 @@ instr2Tiles:
 	.short	4872
 	.short	4883
 	.short	2067
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
-	.short	2056
 	.short	2056
 	.ident	"GCC: (devkitARM release 53) 9.1.0"

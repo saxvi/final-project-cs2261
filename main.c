@@ -25,6 +25,8 @@
 #include "loseScreen.h"
 #include "pause.h"
 #include "extra.h"
+#include "tilemap.h"
+#include "tileset.h"
 
 #include "spritesheet.h"
 #include "game.h"
@@ -74,6 +76,7 @@ int seed;
 int level; 
 int time;
 int state;
+int vBlankCount;
 
 enum {
     START,
@@ -306,12 +309,12 @@ void instructions() {
 
 // go to instr 2
 void goToInstr2() {
-    DMANow(3, instr2Pal, PALETTE, 256);
 
-    REG_BG0CNT = BG_SIZE_SMALL | BG_CHARBLOCK(0) | BG_SCREENBLOCK(31) | BG_8BPP;
+    REG_BG0CNT = BG_SIZE_SMALL | BG_CHARBLOCK(0) | BG_SCREENBLOCK(31);
 
-    DMANow(3, instr2Tiles, &CHARBLOCK[0], instr2TilesLen/2);
-    DMANow(3, instr2Map, &SCREENBLOCK[31], instr2MapLen/2);
+    DMANow(3, tilesetPal, PALETTE, tilesetPalLen / 2);
+    DMANow(3, tilesetTiles, &CHARBLOCK[0], tilesetTilesLen / 2);
+    DMANow(3, tilemapMap, &SCREENBLOCK[31], tilemapMapLen / 2);
 
     waitForVBlank();
     DMANow(3, shadowOAM, OAM, 128*4);
@@ -322,6 +325,17 @@ void goToInstr2() {
 void instr2() {
 
 hideSprites();
+    // tilemap modifications
+
+    if (time % 10) {
+        SCREENBLOCK[31].tilemap[OFFSET(7, 15, 32)] = TMAP_ENTRY_TILEID(0); // left dog tail 1
+        SCREENBLOCK[31].tilemap[OFFSET(22, 15, 32)] = TMAP_ENTRY_TILEID(1); // right dog tail 1
+    }
+    if (!time % 10) {
+        SCREENBLOCK[31].tilemap[OFFSET(7, 15, 32)] = TMAP_ENTRY_TILEID(457); // left dog tail 2
+        SCREENBLOCK[31].tilemap[OFFSET(22, 15, 32)] = TMAP_ENTRY_TILEID(472); // right dog tail 2
+    }
+
 
     // back to start    
     if (BUTTON_PRESSED(BUTTON_START)) {
