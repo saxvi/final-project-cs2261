@@ -1047,7 +1047,7 @@ extern const unsigned short tilemapMap[1024];
 # 29 "main.c" 2
 # 1 "tileset.h" 1
 # 21 "tileset.h"
-extern const unsigned short tilesetTiles[9600];
+extern const unsigned short tilesetTiles[19200];
 
 
 extern const unsigned short tilesetPal[256];
@@ -1450,10 +1450,10 @@ void instructions() {
 
 void goToInstr2() {
 
-    (*(volatile unsigned short*)0x4000008) = (0 << 14) | ((0) << 2) | ((31) << 8);
+    (*(volatile unsigned short*)0x4000008) = (0 << 14) | ((0) << 2) | ((31) << 8) | (1 << 7);
 
     DMANow(3, tilesetPal, ((unsigned short *)0x5000000), 512 / 2);
-    DMANow(3, tilesetTiles, &((charblock *)0x06000000)[0], 19200 / 2);
+    DMANow(3, tilesetTiles, &((charblock *)0x06000000)[0], 38400 / 2);
     DMANow(3, tilemapMap, &((screenblock *)0x6000000)[31], (2048) / 2);
 
     waitForVBlank();
@@ -1462,22 +1462,23 @@ void goToInstr2() {
     state = INSTR2;
 }
 
+
 void instr2() {
 
-    time++;
+    int wag = 0;
+
     hideSprites();
 
 
-    if (time % 10) {
+
+    if ((!(~(oldButtons) & ((1<<9))) && (~(buttons) & ((1<<9))))) {
         ((screenblock *)0x6000000)[31].tilemap[((15) * (32) + (7))] = ((0 & 0x3FF));
-        ((screenblock *)0x6000000)[31].tilemap[((15) * (32) + (22))] = ((1 & 0x3FF));
+        ((screenblock *)0x6000000)[31].tilemap[((15) * (32) + (22))] = ((1 & 0x3FF)) | ((1 & 0xF) << 12);
     }
-
-    if (time % 5 && !(time % 10)) {
-        ((screenblock *)0x6000000)[31].tilemap[((15) * (32) + (7))] = ((457 & 0x3FF));
-        ((screenblock *)0x6000000)[31].tilemap[((15) * (32) + (22))] = ((472 & 0x3FF));
+    if ((!(~(oldButtons) & ((1<<8))) && (~(buttons) & ((1<<8))))) {
+            ((screenblock *)0x6000000)[31].tilemap[((15) * (32) + (7))] = ((457 & 0x3FF));
+            ((screenblock *)0x6000000)[31].tilemap[((15) * (32) + (22))] = ((472 & 0x3FF)) | ((1 & 0xF) << 12);
     }
-
 
 
     if ((!(~(oldButtons) & ((1<<3))) && (~(buttons) & ((1<<3))))) {

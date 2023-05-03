@@ -310,7 +310,7 @@ void instructions() {
 // go to instr 2
 void goToInstr2() {
 
-    REG_BG0CNT = BG_SIZE_SMALL | BG_CHARBLOCK(0) | BG_SCREENBLOCK(31);
+    REG_BG0CNT = BG_SIZE_SMALL | BG_CHARBLOCK(0) | BG_SCREENBLOCK(31) | BG_8BPP;
 
     DMANow(3, tilesetPal, PALETTE, tilesetPalLen / 2);
     DMANow(3, tilesetTiles, &CHARBLOCK[0], tilesetTilesLen / 2);
@@ -322,22 +322,23 @@ void goToInstr2() {
     state = INSTR2;
 }
 
+// runs every frame of instr2
 void instr2() {
 
-    time++;
+    int wag = 0;
+
     hideSprites();
 
     // tilemap modifications
-    if (time % 10) {
-        SCREENBLOCK[31].tilemap[OFFSET(7, 15, 32)] = TMAP_ENTRY_TILEID(0); // left dog tail 1
-        SCREENBLOCK[31].tilemap[OFFSET(22, 15, 32)] = TMAP_ENTRY_TILEID(1); // right dog tail 1
-    }
-    
-    if (time % 5 && !(time % 10)) {
-        SCREENBLOCK[31].tilemap[OFFSET(7, 15, 32)] = TMAP_ENTRY_TILEID(457); // left dog tail 2
-        SCREENBLOCK[31].tilemap[OFFSET(22, 15, 32)] = TMAP_ENTRY_TILEID(472); // right dog tail 2
-    }
 
+    if (BUTTON_PRESSED(BUTTON_LSHOULDER)) {
+        SCREENBLOCK[31].tilemap[OFFSET(7, 15, 32)] = TMAP_ENTRY_TILEID(0); // left dog tail 1
+        SCREENBLOCK[31].tilemap[OFFSET(22, 15, 32)] = TMAP_ENTRY_TILEID(1) | TMAP_ENTRY_PALROW(1);// right dog tail 1 
+    }
+    if (BUTTON_PRESSED(BUTTON_RSHOULDER)) {
+            SCREENBLOCK[31].tilemap[OFFSET(7, 15, 32)] = TMAP_ENTRY_TILEID(457); // left dog tail 2
+            SCREENBLOCK[31].tilemap[OFFSET(22, 15, 32)] = TMAP_ENTRY_TILEID(472) | TMAP_ENTRY_PALROW(1);// right dog tail 2
+    }
 
     // back to start    
     if (BUTTON_PRESSED(BUTTON_START)) {
