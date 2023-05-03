@@ -40,6 +40,7 @@ int score;
 int level;
 int carrying;
 int safe;
+int aniSpeed;
 
 SPRITE basket;
 SPRITE table;
@@ -193,7 +194,8 @@ void initPlayer() {
     player.x = 8;
     player.y = 16;
     player.direction = DOWN;
-    
+    aniSpeed = 10;
+
 }
 
 void updatePlayer() {
@@ -263,17 +265,17 @@ void updatePlayer() {
     // WALKING ANIMATION
     if (player.isMoving) {
 
-        if (player.timeUntilNextFrame % 10 == 0) {
+        if (player.timeUntilNextFrame % aniSpeed == 0) {
             player.frame = (player.frame + 1) % player.numOfFrames;
         };
         if (player.timeUntilNextFrame == 0) {
-            player.timeUntilNextFrame = 10;
+            player.timeUntilNextFrame = aniSpeed;
         }
         player.timeUntilNextFrame--;
 
     } else {
         player.frame = 0;
-        player.timeUntilNextFrame = 10;
+        player.timeUntilNextFrame = aniSpeed;
     }
 
 
@@ -732,6 +734,7 @@ void updateCheat() {
             player.dx = 5;
             player.dy = 5;
             cheat.hide = 1;
+            aniSpeed = 4;
         }
     }
     mgba_printf("cheat initialized");

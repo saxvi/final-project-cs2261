@@ -324,14 +324,16 @@ void goToInstr2() {
 
 void instr2() {
 
-hideSprites();
-    // tilemap modifications
+    time++;
+    hideSprites();
 
+    // tilemap modifications
     if (time % 10) {
         SCREENBLOCK[31].tilemap[OFFSET(7, 15, 32)] = TMAP_ENTRY_TILEID(0); // left dog tail 1
         SCREENBLOCK[31].tilemap[OFFSET(22, 15, 32)] = TMAP_ENTRY_TILEID(1); // right dog tail 1
     }
-    if (!time % 10) {
+    
+    if (time % 5 && !(time % 10)) {
         SCREENBLOCK[31].tilemap[OFFSET(7, 15, 32)] = TMAP_ENTRY_TILEID(457); // left dog tail 2
         SCREENBLOCK[31].tilemap[OFFSET(22, 15, 32)] = TMAP_ENTRY_TILEID(472); // right dog tail 2
     }
